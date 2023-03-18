@@ -1,5 +1,6 @@
-package com.example.toyproject.domain;
+package com.example.toyproject.repository;
 
+import com.example.toyproject.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

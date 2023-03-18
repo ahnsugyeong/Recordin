@@ -1,5 +1,6 @@
-package com.example.toyproject.domain;
+package com.example.toyproject.repository;
 
+import com.example.toyproject.domain.Board;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

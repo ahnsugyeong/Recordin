@@ -1,7 +1,7 @@
 package com.example.toyproject;
 
 import com.example.toyproject.domain.Board;
-import com.example.toyproject.domain.BoardRepository;
+import com.example.toyproject.repository.BoardRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
