@@ -11,15 +11,18 @@ public class Board {
     private Long id;
     private String title;
     private String description;
+    private Long userId;
     private String imgUrl;
+
     private Date createdDate;
 
     public Board() {
     }
 
-    public Board(String title, String description, String imgUrl) {
+    public Board(String title, String description, Long userId, String imgUrl) {
         this.title = title;
         this.description = description;
+        this.userId = userId;
         this.imgUrl = imgUrl;
     }
 }
