@@ -6,24 +6,21 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.List;
 
-@Getter @Setter
+@Getter
+@Setter
 public class Member {
-    private Long id;
+    private Long memberId;
     private String email;
     private String password;
-    private String userName;
-    private Date birthDate;
-    private List<Board> boards;   // 작성 게시글
-
+    private String name;
 
     public Member() {
 
     }
 
-    public Member(String email, String password, String userName, Date birthDate) {
+    public Member(String email, String password, String name) {
         this.email = email;
         this.password = password;
-        this.userName = userName;
-        this.birthDate = birthDate;
+        this.name = name;
     }
 }

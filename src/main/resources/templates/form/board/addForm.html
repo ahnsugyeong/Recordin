@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+    <title>write</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="board_wrap">
+        <form action="board.html" th:action th:object="${board}" method="post">
+            <div class="py-5 text-center">
+                <h2>REVIEW</h2>
+                <p>write what you mind</p>
+            </div>
+            <div class="board_write_wrap">
+                <div class="board_write">
+                    <div class="title">
+                        <dl>
+                            <dt>TITLE</dt>
+                            <label for="title">title</label>
+                            <input type="text" id="title" class="form-control" placeholder="title">
+                        </dl>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="writer">writer</label>
+                            <input type="text" id="writer" class="form-control" placeholder="who write/make it">
+                        </div>
+                        <div class="col">
+                            <link href="/css/star.css" rel="stylesheet"/>
+                            <p>rate</p>
+                            <div class="mb-3" name="myform" id="myform">
+                                <fieldset>
+                                    <input type="radio" name="reviewStar" value="5" id="rate1"><label
+                                        for="rate1">★</label>
+                                    <input type="radio" name="reviewStar" value="4" id="rate2"><label
+                                        for="rate2">★</label>
+                                    <input type="radio" name="reviewStar" value="3" id="rate3"><label
+                                        for="rate3">★</label>
+                                    <input type="radio" name="reviewStar" value="2" id="rate4"><label
+                                        for="rate4">★</label>
+                                    <input type="radio" name="reviewStar" value="1" id="rate5"><label
+                                        for="rate5">★</label>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="cont">
+                            <textarea id="content" class="form-control" placeholder="content">content</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col">
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">save</button>
+                </div>
+                <div class="col">
+                    <button class="w-100 btn btn-secondary btn-lg"
+                            th:onclick="|location.href='@{/board/{memberId}(memberId=${member.memberId})}'|"
+                            onclick="location.href='main.html'" type="button">cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

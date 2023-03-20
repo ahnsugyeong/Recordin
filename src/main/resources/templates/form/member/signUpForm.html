@@ -28,8 +28,8 @@
             <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="비밀번호를 입력하세요">
         </div>
         <div>
-            <label for="userName">닉네임</label>
-            <input type="text" id="userName" th:field="*{userName}" class="form-control" placeholder="닉네임을 입력하세요">
+            <label for="name">이름</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="닉네임을 입력하세요">
         </div>
 
         <hr class="my-4">
@@ -41,7 +41,7 @@
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
                         onclick="location.href='index.html'"
-                        th:onclick="|location.href='@{/}'|"
+                        th:onclick="|location.href='@{/member/sign-in}'|"
                         type="button">취소
                 </button>
             </div>
