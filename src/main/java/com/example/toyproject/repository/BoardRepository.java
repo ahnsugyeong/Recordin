@@ -1,6 +1,7 @@
 package com.example.toyproject.repository;
 
 import com.example.toyproject.domain.Board;
+import com.example.toyproject.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -12,15 +13,23 @@ public class BoardRepository {
     private static long sequence = 0L; //static
 
     public Board save(Board board) {
-        board.setId(++sequence);
-        store.put(board.getId(), board);
+        board.setBoardId(++sequence);
+        store.put(board.getBoardId(), board);
         return board;
     }
 
-    public Board findById(Long id) {
-        return store.get(id);
+    public void update(Long boardId, Board updateParam) {
+        // 업데이트 전 유효성 검사 필요
+        Board findBoard = findByBoardId(boardId);
+        findBoard.setTitle(updateParam.getTitle());
+        findBoard.setWriter(updateParam.getWriter());
+        findBoard.setContent(updateParam.getContent());
+        findBoard.setCreatedDate(updateParam.getCreatedDate());
+        findBoard.setRate(updateParam.getRate());
+        findBoard.setImageUrl(updateParam.getImageUrl());
     }
 
-
-
+    public Board findByBoardId(Long boardId) {
+        return store.get(boardId);
+    }
 }

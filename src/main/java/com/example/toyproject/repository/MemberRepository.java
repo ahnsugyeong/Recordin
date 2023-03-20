@@ -14,13 +14,21 @@ public class MemberRepository {
     private static long sequence = 0L; //static
 
     public Member save(Member member) {
-        member.setId(++sequence);
-        store.put(member.getId(), member);
+        member.setMemberId(++sequence);
+        store.put(member.getMemberId(), member);
         return member;
     }
 
-    public Member findById(Long id) {
-        return store.get(id);
+    public Member findByMemberId(Long memberId) {
+        return store.get(memberId);
+    }
+
+    public Member findByEmail(String email) {   // 추후 JPA로 간단하게 구현 가능
+        for (Long memberId : store.keySet()) {
+            Member member = store.get(memberId);
+            if(member.getEmail().equals(email)) return member;
+        }
+        return null;
     }
 
     public List<Member> findAll() {
@@ -29,15 +37,13 @@ public class MemberRepository {
 
     public void update(Long memberId, Member updateParam) {
         // 업데이트 전 유효성 검사 필요
-        Member findMember = findById(memberId);
+        Member findMember = findByMemberId(memberId);
         findMember.setEmail(updateParam.getEmail());
         findMember.setPassword(updateParam.getPassword());
-        findMember.setUserName(updateParam.getUserName());
+        findMember.setName(updateParam.getName());
     }
 
     public void clearStore() {
         store.clear();
     }
-
-
 }

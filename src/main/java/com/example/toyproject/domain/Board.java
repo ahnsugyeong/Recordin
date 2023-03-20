@@ -3,26 +3,32 @@ package com.example.toyproject.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Getter @Setter
 public class Board {
-    private Long id;
+    private Long boardId;
+    private Long memberId;  // FK
     private String title;
-    private String description;
-    private Long userId;
-    private String imgUrl;
+    private String writer;
+    private String content;
+    private LocalDate createdDate;
+    private Integer rate;
+    private String imageUrl;
 
-    private Date createdDate;
+
 
     public Board() {
     }
 
-    public Board(String title, String description, Long userId, String imgUrl) {
+    public Board(Long memberId, String title, String writer, String content, LocalDate createdDate, Integer rate, String imageUrl) {
+        this.memberId = memberId;
         this.title = title;
-        this.description = description;
-        this.userId = userId;
-        this.imgUrl = imgUrl;
+        this.writer = writer;
+        this.content = content;
+        this.createdDate = createdDate;
+        this.rate = rate;
+        this.imageUrl = imageUrl;
     }
 }
