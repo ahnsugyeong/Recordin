@@ -20,14 +20,17 @@ public class TestDataInit {
     /**
      * 테스트용 데이터 추가
      */
+
     @PostConstruct
     public void init() {
         memberRepository.save(new Member("hello@gmail.com", "123", "hello"));
         memberRepository.save(new Member("hello2@gmail.com", "123", "hello2"));
 
-        boardRepository.save(new Board(1L, "제목 테스트 1", "작가 1", "내용 1", LocalDate.now(), 4, ""));
-        boardRepository.save(new Board(1L, "제목 테스트 2", "작가 2", "내용 2", LocalDate.now(), 3, ""));
+        boardRepository.save(new Board(1L, "제목 테스트 1-1", "작가 1-1", "내용 1-1", LocalDate.now(), 4, ""));
+        boardRepository.save(new Board(1L, "제목 테스트 1-2", "작가 1-2", "내용 1-2", LocalDate.now(), 5, ""));
+        boardRepository.save(new Board(2L, "제목 테스트 2", "작가 2", "내용 2", LocalDate.now(), 3, ""));
 
     }
+
 
 }
