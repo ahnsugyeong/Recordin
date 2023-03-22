@@ -14,15 +14,15 @@
 
 <div class="container">
     <div>
-        <label for="userId">작성자</label>
-        <input type="text" id="userId" name="userId" class="form-control" value="10" th:value="${member.name}" readonly>
+        <label for="boardId" th:text="#{label.board.id}">boardId</label>
+        <input type="text" id="boardId" name="boardId" class="form-control" value="10" th:value="${board.memberId}" readonly>
     </div>
     <div>
-        <label for="title">제목</label>
+        <label for="title" th:text="#{label.board.title}">제목</label>
         <input type="text" id="title" name="title" class="form-control" value="제목" th:value="${board.title}" readonly>
     </div>
     <div>
-        <label for="description">내용</label>
+        <label for="description" th:text="#{label.board.content}">내용</label>
         <input type="text" id="description" name="description" class="form-control" value="내용"
                th:value="${board.content}" readonly>
     </div>
@@ -32,15 +32,15 @@
     <div class="row">
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
-                    onclick="location.href='editForm.html'"
-                    th:onclick="|location.href='@{/board/{memberId}/{boardId}/edit(memberId=${member.memberId}, boardId=${board.boardId})}'|"
+                    onclick="location.href='editForm.html'" th:text="#{button.edit}"
+                    th:onclick="|location.href='@{/board/{memberId}/{boardId}/edit(memberId=${board.memberId}, boardId=${board.boardId})}'|"
                     type="button">상품 수정
             </button>
         </div>
         <div class="col">
             <button class="w-100 btn btn-secondary btn-lg"
-                    onclick="location.href='items.html'"
-                    th:onclick="|location.href='@{/board/{memberId}(memberId=${member.memberId})}'|"
+                    onclick="location.href='items.html'" th:text="#{button.list}"
+                    th:onclick="|location.href='@{/board/{memberId}(memberId=${board.memberId})}'|"
                     type="button">목록으로
             </button>
         </div>
