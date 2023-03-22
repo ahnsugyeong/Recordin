@@ -4,7 +4,9 @@ import com.example.toyproject.domain.Board;
 import com.example.toyproject.domain.Member;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -31,5 +33,24 @@ public class BoardRepository {
 
     public Board findByBoardId(Long boardId) {
         return store.get(boardId);
+    }
+
+    //추가
+    public List<Board> findByMemberId(Long memberId){
+        List<Board> memberBoards = new ArrayList<>();
+        for (Board board : store.values()) {
+            if (board.getMemberId().equals(memberId)) {
+                memberBoards.add(board);
+            }
+        }
+        return memberBoards;
+    }
+
+    public List<Board> findAll() {
+        return new ArrayList<>(store.values());
+    }
+
+    public void clear() {
+        store.clear();
     }
 }
