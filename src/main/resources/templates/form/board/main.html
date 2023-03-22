@@ -9,7 +9,7 @@
 <!--김영한 스프링에서 쓰던 css파일 사용-->
 <div class="container" style="max-width: 600px">
     <div class="py-5 text-center">
-        <h2>REVIEW_LIST</h2>
+        <h2 th:text="|${member.name}님의 REVIEW_LIST|">REVIEW_LIST</h2>
     </div>
 
     <div class="row">
@@ -48,7 +48,11 @@
             </tbody>
         </table>
     </div>
-
+    <form th:action="@{/member/sign-out}" method="post">
+        <button class="w-100 btn btn-dark btn-lg" type="submit">
+            로그아웃
+        </button>
+    </form>
 </div> <!-- /container -->
 
 </body>

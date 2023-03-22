@@ -1,17 +1,21 @@
 package com.example.toyproject.domain;
 
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 public class Member {
     private Long memberId;
+    @NotBlank
     private String email;
+    @NotBlank
     private String password;
+    @NotBlank
     private String name;
 
     public Member() {
@@ -24,3 +28,4 @@ public class Member {
         this.name = name;
     }
 }
+

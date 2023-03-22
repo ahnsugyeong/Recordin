@@ -8,6 +8,10 @@
         .container {
             max-width: 560px;
         }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -18,14 +22,16 @@
         <h2>로그인</h2>
     </div>
 
-    <form action="index.html" th:action th:object="${member}" method="post">
+    <form action="index.html" th:action th:object="${signInForm}" method="post">
         <div>
             <label for="email">이메일</label>
-            <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="이메일을 입력하세요">
+            <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="이메일을 입력하세요" th:errorclass="field-error">
+            <div class="field-error" th:errors="*{email}"/>
         </div>
         <div>
             <label for="password">비밀번호</label>
-            <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="비밀번호를 입력하세요">
+            <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="비밀번호를 입력하세요" th:errorclass="field-error">
+            <div class="field-error" th:errors="*{password}"/>
         </div>
 
         <hr class="my-4">
