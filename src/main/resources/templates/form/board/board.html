@@ -12,19 +12,26 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" th:object="${board}">
     <div>
         <label for="boardId" th:text="#{label.board.id}">boardId</label>
-        <input type="text" id="boardId" name="boardId" class="form-control" value="10" th:value="${board.memberId}" readonly>
+        <input type="text" id="boardId" name="boardId" class="form-control" th:field="*{boardId}" readonly>
     </div>
-    <div>
-        <label for="title" th:text="#{label.board.title}">제목</label>
-        <input type="text" id="title" name="title" class="form-control" value="제목" th:value="${board.title}" readonly>
+    <div class="row">
+        <div class="col">
+            <label for="title" th:text="#{label.board.title}">제목</label>
+            <input type="text" id="title" name="title" class="form-control" th:field="*{title}" readonly>
+        </div>
+        <div class="col">
+            <label for="writer" th:text="#{label.board.writer}">제목</label>
+            <input type="text" id="writer" name="writer" class="form-control" th:field="*{writer}" readonly>
+        </div>
+
     </div>
     <div>
         <label for="description" th:text="#{label.board.content}">내용</label>
         <input type="text" id="description" name="description" class="form-control" value="내용"
-               th:value="${board.content}" readonly>
+               th:field="*{content}" readonly>
     </div>
 
     <hr class="my-4">
