@@ -20,7 +20,7 @@
         <div class="col">
             <!--memberId를 받아오지 않을 수 있을 때 링크 변경 필수-->
             <button class="btn btn-primary float-end"
-                    th:onclick="|location.href='@{/board/{memberId}/add(memberId=${member.memberId})}'|"
+                    th:onclick="|location.href='@{/board/add}'|"
                     onclick="location.href='write.html'"
                     type="button">write
             </button>

@@ -14,8 +14,8 @@ public class HomeController {
     @GetMapping("/")
     public String home(@SessionAttribute(name = SessionConst.SIGN_IN_MEMBER, required = false) Member signInMember, Model model) {
         if (signInMember == null) return "redirect:/member/sign-in";
-        model.addAttribute("member", signInMember);
-        return "redirect:/board/" + signInMember.getMemberId();
+        model.addAttribute("signInForm", signInMember);
+        return "redirect:/board";
     }
 }
 
