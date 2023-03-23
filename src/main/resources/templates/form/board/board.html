@@ -40,14 +40,14 @@
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
                     onclick="location.href='editForm.html'" th:text="#{button.edit}"
-                    th:onclick="|location.href='@{/board/{memberId}/{boardId}/edit(memberId=${board.memberId}, boardId=${board.boardId})}'|"
+                    th:onclick="|location.href='@{/board/{boardId}/edit(boardId=${board.boardId})}'|"
                     type="button">상품 수정
             </button>
         </div>
         <div class="col">
             <button class="w-100 btn btn-secondary btn-lg"
                     onclick="location.href='items.html'" th:text="#{button.list}"
-                    th:onclick="|location.href='@{/board/{memberId}(memberId=${board.memberId})}'|"
+                    th:onclick="|location.href='@{/board}'|"
                     type="button">목록으로
             </button>
         </div>

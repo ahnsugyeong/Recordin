@@ -16,10 +16,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
-@RequiredArgsConstructor
 @Controller
+@RequestMapping("/member")
+@RequiredArgsConstructor
 public class MemberController {
 
     private final MemberRepository memberRepository;
@@ -28,13 +30,13 @@ public class MemberController {
     /**
      * sign-up
      */
-    @GetMapping("/member/sign-up")
+    @GetMapping("/sign-up")
     public String signUpForm(Model model) {
         model.addAttribute("member", new Member());
         return "form/member/signUpForm";
     }
 
-    @PostMapping("/member/sign-up")
+    @PostMapping("/sign-up")
     public String signUpMember(@Validated @ModelAttribute Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "form/member/signUpForm";
@@ -46,12 +48,12 @@ public class MemberController {
     /**
      * sign-in
      */
-    @GetMapping("/member/sign-in")
+    @GetMapping("/sign-in")
     public String signInForm(@ModelAttribute("signInForm") SignInForm form) {
         return "form/member/signInForm";
     }
 
-    @PostMapping("/member/sign-in")
+    @PostMapping("/sign-in")
     public String signIn(@Validated @ModelAttribute("signInForm") SignInForm form, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return "form/member/signInForm";
@@ -66,6 +68,17 @@ public class MemberController {
         // 로그인 성공 세션 처리 (세션에 로그인 회원 정보 보관)
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.SIGN_IN_MEMBER, signInMember);
+        return "redirect:/";
+    }
+    /**
+     * sign-out
+     */
+    @PostMapping("/sign-out")
+    public String signOut(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
         return "redirect:/";
     }
 
