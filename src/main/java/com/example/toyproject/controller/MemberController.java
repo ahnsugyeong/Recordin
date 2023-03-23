@@ -2,9 +2,8 @@ package com.example.toyproject.controller;
 
 import com.example.toyproject.SessionConst;
 import com.example.toyproject.domain.Member;
-import com.example.toyproject.repository.BoardRepository;
 import com.example.toyproject.repository.MemberRepository;
-import com.example.toyproject.service.SignInService;
+import com.example.toyproject.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 
     private final MemberRepository memberRepository;
-    private final SignInService signInService;
+    private final MemberService memberService;
 
     /**
      * sign-up
@@ -38,6 +38,8 @@ public class MemberController {
 
     @PostMapping("/sign-up")
     public String signUpMember(@Validated @ModelAttribute Member member, BindingResult bindingResult) {
+        // 중복 이메일 검사
+        memberService.validateDuplicateMember(member, bindingResult);
         if (bindingResult.hasErrors()) {
             return "form/member/signUpForm";
         }
@@ -60,7 +62,7 @@ public class MemberController {
         }
 
         // sign-in
-        Member signInMember = signInService.signIn(form.getEmail(), form.getPassword());
+        Member signInMember = memberService.signIn(form.getEmail(), form.getPassword());
         if (signInMember == null) {
             bindingResult.reject("signInFail", "이메일 또는 비밀번호가 올바르지 않습니다.");
             return "form/member/signInForm";

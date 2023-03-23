@@ -1,20 +1,14 @@
 package com.example.toyproject.controller;
 
-import com.example.toyproject.SessionConst;
 import com.example.toyproject.domain.Board;
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.repository.BoardRepository;
 import com.example.toyproject.repository.MemberRepository;
-import com.example.toyproject.service.SignInService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import com.example.toyproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,14 +24,13 @@ public class BoardController {
 
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
-    private final SignInService signInService;
 
     /**
      *board
      */
 
     /**
-     * memberRepository에서는 board를 가져올 수 없기 때문에
+     * memberRepository에서는 boarw를 가져올 수 없기 때문에
      * boardRepository에서 FK로 사용한 memberId를 통해 board를 가져와야 한다.
      * member삭제 필요 --> main.html에서 단지 write 버튼의 링크 하나 때문에 필요함.
      * BoardRepostiory에서 findByMemberId메서드 생성 <<중요!
