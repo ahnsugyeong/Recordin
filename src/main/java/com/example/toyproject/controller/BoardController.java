@@ -2,8 +2,8 @@ package com.example.toyproject.controller;
 
 import com.example.toyproject.SessionConst;
 import com.example.toyproject.domain.Board;
-import com.example.toyproject.repository.BoardRepository;
 import com.example.toyproject.domain.Member;
+import com.example.toyproject.repository.BoardRepository;
 import com.example.toyproject.repository.MemberRepository;
 import com.example.toyproject.service.SignInService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,68 +15,21 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
 @Slf4j
-@Controller
 @RequiredArgsConstructor
-public class MainController {
+@Controller
+public class BoardController {
+
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
     private final SignInService signInService;
-
-    /**
-     * sign-up
-     */
-    @GetMapping("/member/sign-up")
-    public String signUpForm(Model model) {
-        model.addAttribute("member", new Member());
-        return "form/member/signUpForm";
-    }
-
-    @PostMapping("/member/sign-up")
-    public String signUpMember(@Validated @ModelAttribute Member member, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "form/member/signUpForm";
-        }
-        Member savedMember = memberRepository.save(member); // 회원가입
-        return "redirect:sign-in";
-    }
-
-    /**
-     * sign-in
-     */
-    @GetMapping("/member/sign-in")
-    public String signInForm(@ModelAttribute("signInForm") SignInForm form) {
-        return "form/member/signInForm";
-    }
-
-    @PostMapping("/member/sign-in")
-    public String signIn(@Validated @ModelAttribute("signInForm") SignInForm form, BindingResult bindingResult, HttpServletRequest request) {
-        if (bindingResult.hasErrors()) {
-            return "form/member/signInForm";
-        }
-
-        // sign-in
-        Member signInMember = signInService.signIn(form.getEmail(), form.getPassword());
-        if (signInMember == null) {
-            bindingResult.reject("signInFail", "이메일 또는 비밀번호가 올바르지 않습니다.");
-            return "form/member/signInForm";
-        }
-        // 로그인 성공 세션 처리 (세션에 로그인 회원 정보 보관)
-        HttpSession session = request.getSession();
-        session.setAttribute(SessionConst.SIGN_IN_MEMBER, signInMember);
-        return "redirect:/";
-    }
-
-    @PostMapping("/member/sign-out")
-    public String signOut(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);    // 세션 없어도 새로 생성 X
-        if (session != null) session.invalidate();
-        return "redirect:/";
-    }
-
 
     /**
      *board
