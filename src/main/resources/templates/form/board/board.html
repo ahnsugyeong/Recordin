@@ -13,35 +13,44 @@
 <body>
 
 <div class="container" th:object="${board}">
-    <div>
-        <label for="boardId" th:text="#{label.board.id}">boardId</label>
-        <input type="text" id="boardId" name="boardId" class="form-control" th:field="*{boardId}" readonly>
-    </div>
-    <div class="row">
-        <div class="col">
-            <label for="title" th:text="#{label.board.title}">제목</label>
-            <input type="text" id="title" name="title" class="form-control" th:field="*{title}" readonly>
-        </div>
-        <div class="col">
-            <label for="writer" th:text="#{label.board.writer}">제목</label>
-            <input type="text" id="writer" name="writer" class="form-control" th:field="*{writer}" readonly>
-        </div>
 
+    <div class="py-5 text-center">
+        <h2 th:text="|${member.name}님의 REVIEW_LIST|"
+            th:onclick="|location.href='@{/board}'|"
+        >REVIEW_LIST</h2>
     </div>
-    <div>
-        <label for="description" th:text="#{label.board.content}">내용</label>
-        <input type="text" id="description" name="description" class="form-control" value="내용"
-               th:field="*{content}" readonly>
+
+    <h1 class="py-3 text-lg-start" id="title" name="title" th:text="*{title}"></h1>
+
+    <div style="float:left;margin-right: 20px;">
+        <h3 class="text-md-start" type="text" id="writer" name="writer" th:text="*{writer}" readonly/>
+    </div>
+
+    <link href="/css/star.css" rel="stylesheet"/>
+    <div class="mb-3" name="mydetailform" id="mydetailform" style="margin-top: 10px;">
+        <fieldset>
+            <input type="radio" name="reviewStar" value="5" id="rate1" th:field="*{rate}" disabled><label
+                for="rate1">★</label>
+            <input type="radio" name="reviewStar" value="4" id="rate2" th:field="*{rate}" disabled><label
+                for="rate2">★</label>
+            <input type="radio" name="reviewStar" value="3" id="rate3" th:field="*{rate}" disabled><label
+                for="rate3">★</label>
+            <input type="radio" name="reviewStar" value="2" id="rate4" th:field="*{rate}" disabled><label
+                for="rate4">★</label>
+            <input type="radio" name="reviewStar" value="1" id="rate5" th:field="*{rate}" disabled><label
+                for="rate5">★</label>
+        </fieldset>
     </div>
 
     <hr class="my-4">
-
+    <p class="text-start" id="description" name="description" th:text="*{content}" readonly>content</p>
+    <hr class="my-4">
     <div class="row">
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
                     onclick="location.href='editForm.html'" th:text="#{button.edit}"
                     th:onclick="|location.href='@{/board/{boardId}/edit(boardId=${board.boardId})}'|"
-                    type="button">상품 수정
+                    type="button">글 수정
             </button>
         </div>
         <div class="col">

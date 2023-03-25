@@ -134,7 +134,9 @@ public class BoardController {
     @GetMapping("/board/{boardId}")
     public String board(@PathVariable long boardId, Model model) {
         Board board = boardRepository.findByBoardId(boardId);
+        Member member = memberRepository.findByMemberId(board.getMemberId());
         model.addAttribute("board", board);
+        model.addAttribute("member", member);
         return "form/board/board";
     }
 
