@@ -1,5 +1,6 @@
 package com.example.toyproject.controller;
 
+import com.example.toyproject.SessionConst;
 import com.example.toyproject.domain.Board;
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.repository.BoardRepository;
@@ -9,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -91,7 +89,7 @@ public class BoardController {
     }
     @PostMapping("/add")
     public String addBoardV2(
-            @SessionAttribute(name=SessionConst.SIGN_IN_MEMBER, required = false) Member member,
+            @SessionAttribute(name= SessionConst.SIGN_IN_MEMBER, required = false) Member member,
             @ModelAttribute Board board) {
         board.setMemberId(member.getMemberId());
         Board savedBoard = boardRepository.save(board);
@@ -136,7 +134,9 @@ public class BoardController {
     @GetMapping("/board/{boardId}")
     public String board(@PathVariable long boardId, Model model) {
         Board board = boardRepository.findByBoardId(boardId);
+        Member member = memberRepository.findByMemberId(board.getMemberId());
         model.addAttribute("board", board);
+        model.addAttribute("member", member);
         return "form/board/board";
     }
 
