@@ -5,7 +5,6 @@ import com.example.toyproject.domain.Board;
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.repository.BoardRepository;
 import com.example.toyproject.repository.MemberRepository;
-import com.example.toyproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

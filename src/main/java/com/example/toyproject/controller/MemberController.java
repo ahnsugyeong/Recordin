@@ -2,8 +2,9 @@ package com.example.toyproject.controller;
 
 import com.example.toyproject.SessionConst;
 import com.example.toyproject.domain.Member;
+import com.example.toyproject.dto.SignInForm;
 import com.example.toyproject.repository.MemberRepository;
-import com.example.toyproject.service.MemberService;
+import com.example.toyproject.service.MemberServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,8 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberRepository memberRepository;
-    private final MemberService memberService;
+    private final MemberServiceImpl memberService;
 
     /**
      * sign-up
@@ -43,7 +42,7 @@ public class MemberController {
         if (bindingResult.hasErrors()) {
             return "form/member/signUpForm";
         }
-        Member savedMember = memberRepository.save(member); // 회원가입
+        memberService.signUp(member); // 회원가입
         return "redirect:sign-in";
     }
 
@@ -78,9 +77,8 @@ public class MemberController {
     @PostMapping("/sign-out")
     public String signOut(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+        //if session is null, signOut --> 조건문을 사용할 필요가 없어보여서 지움
+        memberService.signOut(session);
         return "redirect:/";
     }
 

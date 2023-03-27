@@ -2,6 +2,7 @@ package com.example.toyproject.repository;
 
 import com.example.toyproject.domain.Board;
 import com.example.toyproject.domain.Member;
+import com.example.toyproject.dto.BoardDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

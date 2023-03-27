@@ -1,5 +1,6 @@
-package com.example.toyproject;
+package com.example.toyproject.config;
 
+import com.example.toyproject.SignInCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
