@@ -1,29 +1,32 @@
 package com.example.toyproject.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 import java.util.List;
 
-@Data
+//@Entity
+//@EntityListeners(AuditingEntityListener.class)    -> db 연결 이후
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
+
+    //@GeneratedValue   -> db에서 직접 할당
+    @Id
     private Long memberId;
-    @NotBlank
     private String email;
-    @NotBlank
-    @Size(min = 8, max = 15, message = "비밀번호를 8자 이상 15자 이하로 입력해주세요.")
     private String password;
-    @NotBlank
     private String name;
 
-    public Member() {
 
-    }
-
+    @Builder
     public Member(String email, String password, String name) {
         this.email = email;
         this.password = password;
