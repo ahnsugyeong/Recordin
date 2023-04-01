@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor
-public class SignUpForm {
+public class SignUpDto {
 
     @NotBlank
     private String email;
@@ -28,7 +28,7 @@ public class SignUpForm {
     }
     //
     @Builder
-    public SignUpForm(String email, String password, String name) {
+    public SignUpDto(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;

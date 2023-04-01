@@ -14,7 +14,7 @@ import java.util.Date;
 //@Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor//(access = AccessLevel.PROTECTED)
 public class Board {
 
     //@GeneratedValue       -> db에서 직접 할당

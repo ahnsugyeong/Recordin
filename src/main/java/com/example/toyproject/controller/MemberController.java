@@ -2,8 +2,7 @@ package com.example.toyproject.controller;
 
 import com.example.toyproject.SessionConst;
 import com.example.toyproject.domain.Member;
-import com.example.toyproject.dto.SignInForm;
-import com.example.toyproject.repository.MemberRepository;
+import com.example.toyproject.dto.SignInDto;
 import com.example.toyproject.service.MemberServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -50,12 +49,12 @@ public class MemberController {
      * sign-in
      */
     @GetMapping("/sign-in")
-    public String signInForm(@ModelAttribute("signInForm") SignInForm form) {
+    public String signInForm(@ModelAttribute("signInForm") SignInDto form) {
         return "form/member/signInForm";
     }
 
     @PostMapping("/sign-in")
-    public String signIn(@Validated @ModelAttribute("signInForm") SignInForm form, BindingResult bindingResult, HttpServletRequest request) {
+    public String signIn(@Validated @ModelAttribute("signInForm") SignInDto form, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return "form/member/signInForm";
         }

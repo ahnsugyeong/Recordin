@@ -15,7 +15,7 @@ import java.util.List;
 //@EntityListeners(AuditingEntityListener.class)    -> db 연결 이후
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor//(access = AccessLevel.PROTECTED)
 public class Member {
 
     //@GeneratedValue   -> db에서 직접 할당
