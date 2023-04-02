@@ -42,14 +42,5 @@ public abstract class Board {
     }
 
 
-//    @Builder
-//    public Board(Long id, Member member, String title, String content,
-//                 LocalDateTime createdDate, Integer rate) {
-//        this.id = id;
-//        this.member = member;
-//        this.title = title;
-//        this.content = content;
-//        this.createdDate = createdDate;
-//        this.rate = rate;
-//    }
+
 }
