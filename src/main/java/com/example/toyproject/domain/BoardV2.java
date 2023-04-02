@@ -1,21 +1,20 @@
 package com.example.toyproject.domain;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.FetchType.*;
 
-//@EntityListeners(AuditingEntityListener.class)
+
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor//(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 public class BoardV2 {
     @Id
     @GeneratedValue
@@ -24,10 +23,17 @@ public class BoardV2 {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private MemberV2 member;
+
+    @Column(length = 100, nullable = false)
     private String title;
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
+
+    @Column(length = 10, nullable = false)
     private String author;
+
     private int rate;
+    @LastModifiedDate
     private LocalDateTime createdDate;
 
     // 연관관계 편의 메서드
@@ -37,15 +43,14 @@ public class BoardV2 {
     }
 
 
-//    @Builder
-//    public BoardV2(Long id, String title, String author, String content,
-//                   LocalDateTime createdDate, Integer rate, String imageUrl) {
-//        this.id = id;
-//        this.title = title;
-//        this.author = author;
-//        this.content = content;
-//        this.createdDate = createdDate;
-//        this.rate = rate;
-//
-//    }
+    @Builder
+    public BoardV2(Long id, String title, String author, String content,
+                   LocalDateTime createdDate, Integer rate, String imageUrl) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.content = content;
+        this.createdDate = createdDate;
+        this.rate = rate;
+    }
 }
