@@ -1,30 +1,31 @@
 package com.example.toyproject.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import com.example.toyproject.domain.board.Board;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
-//@EntityListeners(AuditingEntityListener.class)    -> db 연결 이후
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor//(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
-
-    //@GeneratedValue   -> db에서 직접 할당
     @Id
-    private Long memberId;
+    @GeneratedValue
+    @Column(name = "member_id")
+    private Long id;
+    @Column(length = 100, nullable = false)
     private String email;
+    @Column(length = 15, nullable = false)
     private String password;
+
+    @Column(length = 10, nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "member")
+    private List<Board> boards = new ArrayList<>();
 
     @Builder
     public Member(String email, String password, String name) {
