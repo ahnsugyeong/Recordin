@@ -1,5 +1,6 @@
 package com.example.toyproject.domain;
 
+import com.example.toyproject.domain.board.BoardV2;
 import jakarta.persistence.*;
 import lombok.*;
 

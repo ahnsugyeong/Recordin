@@ -1,5 +1,6 @@
-package com.example.toyproject.domain;
+package com.example.toyproject.domain.board;
 
+import com.example.toyproject.domain.MemberV2;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,7 +16,7 @@ import static jakarta.persistence.FetchType.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
-public class BoardV2 {
+public abstract class BoardV2 {
     @Id
     @GeneratedValue
     @Column(name = "board_id")
