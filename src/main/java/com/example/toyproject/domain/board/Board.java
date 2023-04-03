@@ -22,18 +22,18 @@ public abstract class Board {
     @Id
     @GeneratedValue
     @Column(name = "board_id")
-    private Long id;
+    protected Long id;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    protected Member member;
 
     @Column(length = 100, nullable = false)
-    private String title;
+    protected String title;
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
-    private int rate;
+    protected String content;
+    protected int rate;
     @LastModifiedDate
-    private LocalDateTime createdDate;
+    protected LocalDateTime createdDate;
 
     // 연관관계 편의 메서드
     public void setMember(Member member) {
