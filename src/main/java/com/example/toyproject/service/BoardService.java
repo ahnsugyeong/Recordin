@@ -10,5 +10,5 @@ public interface BoardService {
     List<BoardDto> getBoardList(Member member);
     Long postBoard(BoardDto boardDto);
     BoardDto getBoard(Long id);
-    void updateBoard(BoardDto boardDto);
+    void updateBoard(Long id, BoardDto boardDto);
 }

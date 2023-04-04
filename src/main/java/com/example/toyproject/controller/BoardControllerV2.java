@@ -56,11 +56,7 @@ public class BoardControllerV2 {
 
     @PostMapping("/{boardId}/edit")
     public String edit(@PathVariable Long boardId, @ModelAttribute BoardDto boardDto) {
-        // 못 받아 옴
-        log.info("board controller edit id = {}", boardDto.getId());
-        log.info("board controller edit title = {}", boardDto.getTitle());
-
-        boardService.updateBoard(boardDto);
+        boardService.updateBoard(boardId, boardDto);
         return "redirect:/board/board/{boardId}";
     }
 

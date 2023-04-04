@@ -37,17 +37,13 @@ public class Book extends Board {
         this.dtype = dtype;
     }
 
-    public void updateBook(Long id, Member member, String title, String content,
-                           Integer rate, LocalDateTime createdDate, String author, String isbn, String dtype) {
-        this.id = id;
-        this.member = member;
+    public void updateBook(String title, String content,
+                           Integer rate, String author, String isbn) {
         this.title = title;
         this.content = content;
         this.rate = rate;
-        this.createdDate = createdDate;
         this.author = author;
         this.isbn = isbn;
-        this.dtype = dtype;
     }
 }
 
