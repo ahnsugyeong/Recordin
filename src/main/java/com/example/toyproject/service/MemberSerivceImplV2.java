@@ -47,6 +47,10 @@ public class MemberSerivceImplV2 implements MemberService{
                     "member", "email", "이미 사용중인 이메일입니다."));
         }
     }
-    
+
+//    @Override
+//    public List<BoardDto> getBoardListOfMember(SignInDto signInDto) {
+//
+//    }
 
 }
