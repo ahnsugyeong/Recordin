@@ -1,11 +1,7 @@
 package com.example.toyproject.service;
 
 import com.example.toyproject.domain.Member;
-import com.example.toyproject.domain.board.Board;
-import com.example.toyproject.domain.board.BoardCategory;
-import com.example.toyproject.domain.board.Book;
-import com.example.toyproject.domain.board.Movie;
-import com.example.toyproject.dto.BoardDto;
+
 import com.example.toyproject.dto.SignInDto;
 import com.example.toyproject.dto.SignUpDto;
 import com.example.toyproject.repository.MemberRepository;
@@ -16,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +45,7 @@ public class MemberServiceImplV2 implements MemberService{
     public void validateDuplicateMember(SignUpDto signUpDto, BindingResult bindingResult) {
         List<Member> findMember = memberRepository
                 .findByEmailAndPassword(signUpDto.getEmail(), signUpDto.getPassword());
-        if (findMember.isEmpty()) {
+        if (!findMember.isEmpty()) {
             bindingResult.addError(new FieldError(
                     "member", "email", "이미 사용중인 이메일입니다."));
         }

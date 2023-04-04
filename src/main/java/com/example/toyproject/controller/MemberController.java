@@ -28,7 +28,7 @@ import java.util.Optional;
 public class MemberController {
 
     private final MemberService memberService;
-   //private final MemberRepository memberRepository;
+   private final MemberRepository memberRepository;
 
     /**
      * sign-up
@@ -40,7 +40,7 @@ public class MemberController {
     }
 
     @PostMapping("/sign-up")
-    public String signUpMember(@Validated @ModelAttribute SignUpDto signUpDto, BindingResult bindingResult) {
+    public String signUpMember(@Validated @ModelAttribute("signUpForm") SignUpDto signUpDto, BindingResult bindingResult) {
         // 중복 이메일 검사
         memberService.validateDuplicateMember(signUpDto, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -72,9 +72,11 @@ public class MemberController {
             return "form/member/signInForm";
         }
         // 로그인 성공 세션 처리 (세션에 로그인 회원 정보 보관)
-        //Optional<Member> member= memberRepository.findById(checkExist);
+        //Problem: optional은 null의 경우도 포함해주기 위해 사용함. 하지만 밑에 경우는 checkExist를 통해 값 존재의
+        //유무를 확인하기 때문에 무조건 존재할것이라 판단하여 get()메서드로 member객체를 가져옴
+        Optional<Member> member= memberRepository.findById(checkExist);
         HttpSession session = request.getSession();
-        session.setAttribute(SessionConst.SIGN_IN_MEMBER,signInDto);
+        session.setAttribute(SessionConst.SIGN_IN_MEMBER, member.get());
         return "redirect:/";
     }
     /**
