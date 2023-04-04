@@ -1,10 +1,7 @@
 package com.example.toyproject.service;
 
 import com.example.toyproject.domain.Member;
-import com.example.toyproject.domain.board.BoardCategory;
 import com.example.toyproject.dto.BoardDto;
-import com.example.toyproject.dto.BookDto;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,7 +36,7 @@ class BoardServiceTest {
         BoardDto getBoardDto = boardService.getBoard(postBoardId);
 
         // then
-        assertThat(getBoardDto.getId()).isEqualTo(postBoardId);
+        assertThat(getBoardDto.getId()).isEqualTo(4L);
     }
 
     @Test
@@ -73,7 +70,7 @@ class BoardServiceTest {
     }
 
     private BoardDto createBook(Member member) {
-        return BookDto.builder()
+        return BoardDto.builder()
                 .member(member)
                 .title("title")
                 .content("content")
@@ -81,12 +78,12 @@ class BoardServiceTest {
                 .createdDate(LocalDateTime.now())
                 .author("author")
                 .isbn("1234-1234-1234-1234")
-                .dtype(BoardCategory.BOOK).build();
+                .dtype("B").build();
     }
 
     private List<BoardDto> createBookList(Member member) {
         List<BoardDto> list = new ArrayList<>();
-        list.add(BookDto.builder()
+        list.add(BoardDto.builder()
                 .member(member)
                 .title("title1")
                 .content("content1")
@@ -94,8 +91,8 @@ class BoardServiceTest {
                 .createdDate(LocalDateTime.now())
                 .author("author")
                 .isbn("1234-1234-1234-1234")
-                .dtype(BoardCategory.BOOK).build());
-        list.add(BookDto.builder()
+                .dtype("B").build());
+        list.add(BoardDto.builder()
                 .member(member)
                 .title("title2")
                 .content("content2")
@@ -103,8 +100,8 @@ class BoardServiceTest {
                 .createdDate(LocalDateTime.now())
                 .author("author")
                 .isbn("1234-1234-1234-1234")
-                .dtype(BoardCategory.BOOK).build());
-        list.add(BookDto.builder()
+                .dtype("B").build());
+        list.add(BoardDto.builder()
                 .member(member)
                 .title("title3")
                 .content("content3")
@@ -112,7 +109,7 @@ class BoardServiceTest {
                 .createdDate(LocalDateTime.now())
                 .author("author")
                 .isbn("1234-1234-1234-1234")
-                .dtype(BoardCategory.BOOK).build());
+                .dtype("B").build());
         return list;
     }
 

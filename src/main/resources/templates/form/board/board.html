@@ -23,7 +23,7 @@
     <h1 class="py-3 text-lg-start" id="title" name="title" th:text="*{title}"></h1>
 
     <div style="float:left;margin-right: 20px;">
-        <h3 class="text-md-start" type="text" id="writer" name="writer" th:text="*{writer}" readonly/>
+        <h3 class="text-md-start" type="text" id="writer" name="writer" th:text="*{author}" readonly/>
     </div>
 
     <link href="/css/star.css" rel="stylesheet"/>
@@ -43,13 +43,13 @@
     </div>
 
     <hr class="my-4">
-    <p class="text-start" id="description" name="description" th:text="*{content}" readonly>content</p>
+    <p class="text-start" type="text" id="description" name="content" th:text="*{content}" readonly>content</p>
     <hr class="my-4">
     <div class="row">
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
                     onclick="location.href='editForm.html'" th:text="#{button.edit}"
-                    th:onclick="|location.href='@{/board/{boardId}/edit(boardId=${board.boardId})}'|"
+                    th:onclick="|location.href='@{/board/{boardId}/edit(boardId=${board.id})}'|"
                     type="button">글 수정
             </button>
         </div>
