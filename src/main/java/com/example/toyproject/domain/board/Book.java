@@ -17,14 +17,16 @@ public class Book extends Board {
     private String author;
     private String isbn;
 
-//    @Builder
-//    public Book(Long id, Member member, String title, String content,
-//                LocalDateTime createdDate, String author, String isbn, Integer rate) {
-//        this.id = id;
-//        this.member = member;
-//        this.title = title;
-//        this.content = content;
-//        this.createdDate = createdDate;
-//        this.rate = rate;
-//    }
+    @Builder
+    public Book(Long id, Member member, String title, String content,
+                LocalDateTime createdDate, Integer rate, String author, String isbn) {
+        this.id = id;
+        this.member = member;
+        this.title = title;
+        this.content = content;
+        this.createdDate = createdDate;
+        this.rate = rate;
+        this.author = author;
+        this.isbn = isbn;
+    }
 }
