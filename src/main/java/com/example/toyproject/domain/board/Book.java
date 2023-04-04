@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +17,7 @@ import java.time.LocalDateTime;
 public class Book extends Board {
     @Column(length = 10, nullable = false)
     private String author;
+    @Column(length = 10)
     private String isbn;
 
     @Builder
@@ -47,5 +47,6 @@ public class Book extends Board {
         this.isbn = isbn;
         this.dtype = dtype;
     }
-
 }
+
+

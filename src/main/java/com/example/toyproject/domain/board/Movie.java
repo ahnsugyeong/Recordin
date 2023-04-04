@@ -1,6 +1,7 @@
 package com.example.toyproject.domain.board;
 
 import com.example.toyproject.domain.Member;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Builder;
@@ -15,7 +16,9 @@ import java.time.LocalDateTime;
 @DiscriminatorValue("M")
 @NoArgsConstructor
 public class Movie extends Board {
+    @Column(length = 10, nullable = false)
     private String director;
+    @Column(length = 10)
     private String imageURL;
 
     @Builder
