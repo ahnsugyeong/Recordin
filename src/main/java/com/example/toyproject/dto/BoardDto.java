@@ -1,3 +1,4 @@
+
 package com.example.toyproject.dto;
 
 import com.example.toyproject.domain.Member;
@@ -21,3 +22,4 @@ public abstract class BoardDto {
     protected LocalDateTime createdDate;
     protected BoardCategory dtype;
 }
+

@@ -1,3 +1,4 @@
+
 package com.example.toyproject.service;
 
 import com.example.toyproject.domain.Member;
@@ -117,5 +118,4 @@ public class BoardServiceImplV2 implements BoardService {
         return boardDto;
     }
 }
-
 

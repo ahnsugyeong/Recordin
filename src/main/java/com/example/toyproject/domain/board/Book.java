@@ -23,6 +23,7 @@ public class Book extends Board {
     @Builder
     public Book(Long id, Member member, String title, String content,
                 Integer rate, LocalDateTime createdDate, String author, String isbn, BoardCategory dtype) {
+
         this.id = id;
         this.member = member;
         this.title = title;
