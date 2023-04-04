@@ -10,5 +10,4 @@ import java.util.List;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
     public List<Member> findByEmailAndPassword(String email, String password);
-    public List<Board> findByMember(SignInDto signInDto);
  }

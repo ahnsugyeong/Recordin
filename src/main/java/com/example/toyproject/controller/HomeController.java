@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    public String home(@SessionAttribute(name = SessionConst.SIGN_IN_MEMBER, required = false)SignInDto signInMember, Model model) {
-        if (signInMember == null) return "redirect:/member/sign-in";
-        model.addAttribute("signInForm", signInMember);
+    public String home(@SessionAttribute(name = SessionConst.SIGN_IN_MEMBER, required = false) Member member, Model model) {
+        if (member == null) return "redirect:/member/sign-in";
+        model.addAttribute("signInMember", member);
         return "redirect:/board";
     }
 }

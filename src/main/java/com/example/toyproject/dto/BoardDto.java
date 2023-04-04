@@ -40,7 +40,6 @@ public class BoardDto {
                     .isbn(isbn)
                     .dtype(dtype)
                     .build();
-            return board;
         } else if (dtype.equals("M")) {
             board = Movie.builder()
                     .id(id)

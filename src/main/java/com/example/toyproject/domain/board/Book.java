@@ -1,6 +1,7 @@
 package com.example.toyproject.domain.board;
 
 import com.example.toyproject.domain.Member;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -15,9 +16,11 @@ import java.time.LocalDateTime;
 @DiscriminatorValue("B")
 @NoArgsConstructor
 public class Book extends Board {
-    @Column(length = 10, nullable = false)
-    private String author;
     @Column(length = 10)
+    @Nullable
+    private String author;
+    @Column(length = 100)
+    @Nullable
     private String isbn;
 
     @Builder
@@ -32,7 +35,6 @@ public class Book extends Board {
         this.author = author;
         this.isbn = isbn;
         this.dtype = dtype;
-        setMember(member);
     }
 
     public void updateBook(Long id, Member member, String title, String content,

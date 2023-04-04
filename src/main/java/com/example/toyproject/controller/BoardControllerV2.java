@@ -25,6 +25,7 @@ public class BoardControllerV2 {
     @GetMapping
     public String boards(@SessionAttribute(name = SessionConst.SIGN_IN_MEMBER, required = false) Member member, Model model) {
         if (member == null) return "redirect:/";
+        log.info("login success");
         List<BoardDto> boards = boardService.getBoardList(member);
         model.addAttribute("member", member);
         model.addAttribute("boards", boards);

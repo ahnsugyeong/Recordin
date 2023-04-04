@@ -28,14 +28,14 @@ import java.util.Optional;
 public class MemberController {
 
     private final MemberService memberService;
-   //private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * sign-up
      */
     @GetMapping("/sign-up")
     public String signUpForm(Model model) {
-        model.addAttribute("signUpForm",new SignUpDto());
+        model.addAttribute("signUpForm", new SignUpDto());
         return "form/member/signUpForm";
     }
 
@@ -72,11 +72,12 @@ public class MemberController {
             return "form/member/signInForm";
         }
         // 로그인 성공 세션 처리 (세션에 로그인 회원 정보 보관)
-        //Optional<Member> member= memberRepository.findById(checkExist);
+        Member member = memberRepository.findById(checkExist).get();
         HttpSession session = request.getSession();
-        session.setAttribute(SessionConst.SIGN_IN_MEMBER,signInDto);
+        session.setAttribute(SessionConst.SIGN_IN_MEMBER, member);
         return "redirect:/";
     }
+
     /**
      * sign-out
      */

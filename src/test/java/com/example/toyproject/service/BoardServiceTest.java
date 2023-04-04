@@ -2,6 +2,8 @@ package com.example.toyproject.service;
 
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.dto.BoardDto;
+import com.example.toyproject.dto.SignUpDto;
+import com.example.toyproject.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -20,13 +23,16 @@ class BoardServiceTest {
     BoardService boardService;
     @Autowired
     MemberService memberService;
+    @Autowired
+    MemberRepository memberRepository;
 
 
     @Test
     public void postAndGetBoard() {
         // given
-        Member member = createMember();
-        memberService.signUp(member);
+        SignUpDto signUpDto = createMember();
+        Long memberId = memberService.signUp(signUpDto);
+        Member member = memberRepository.findById(memberId).get();
 
         BoardDto boardDto = createBook(member);
 
@@ -42,8 +48,11 @@ class BoardServiceTest {
     @Test
     public void updateBoard() {
         // given
-        Member member = createMember();
-        memberService.signUp(member);
+        SignUpDto signUpDto = createMember();
+        Long memberId = memberService.signUp(signUpDto);
+        Member member = memberRepository.findById(memberId).get();
+
+
         BoardDto boardDto = createBook(member);
         Long postBoardId = boardService.postBoard(boardDto);
 
@@ -60,8 +69,10 @@ class BoardServiceTest {
     @Test
     public void boardList() {
         // given
-        Member member = createMember();
-        memberService.signUp(member);
+        SignUpDto signUpDto = createMember();
+        Long memberId = memberService.signUp(signUpDto);
+        Member member = memberRepository.findById(memberId).get();
+
         List<BoardDto> bookList = createBookList(member);
         for (BoardDto boardDto : bookList) {
             boardService.postBoard(boardDto);
@@ -113,8 +124,8 @@ class BoardServiceTest {
         return list;
     }
 
-    private Member createMember() {
-        return Member.builder()
+    private SignUpDto createMember() {
+        return SignUpDto.builder()
                 .email("test@gmail.com")
                 .password("12345678")
                 .name("test name")

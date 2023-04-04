@@ -2,7 +2,6 @@ package com.example.toyproject.service;
 
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.domain.board.Board;
-import com.example.toyproject.domain.board.BoardCategory;
 import com.example.toyproject.domain.board.Book;
 import com.example.toyproject.domain.board.Movie;
 import com.example.toyproject.dto.BoardDto;
@@ -38,8 +37,8 @@ public class MemberServiceImplV2 implements MemberService{
 
     @Transactional
     @Override
-    public void signUp(SignUpDto signUpDto) {
-        memberRepository.save(signUpDto.toEntity());
+    public Long signUp(SignUpDto signUpDto) {
+        return memberRepository.save(signUpDto.toEntity()).getId();
     }
 
     @Override

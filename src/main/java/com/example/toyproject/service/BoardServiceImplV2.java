@@ -39,6 +39,7 @@ public class BoardServiceImplV2 implements BoardService {
     public Long postBoard(BoardDto boardDto) {
         Board board = boardDto.toEntity();
         Board savedBoard = boardRepository.save(board);
+        log.info("board saved!");
         return savedBoard.getId();
     }
 
