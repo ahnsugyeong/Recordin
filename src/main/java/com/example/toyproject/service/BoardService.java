@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BoardService {
     List<BoardDto> getBoardList(Member member);
-    void postBoard(BoardDto boardDto);
-    BoardDto getBoard(long boardId);
+    Long postBoard(BoardDto boardDto);
+    BoardDto getBoard(Long id);
     void updateBoard(BoardDto boardDto);
 }

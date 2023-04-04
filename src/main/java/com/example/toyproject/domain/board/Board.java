@@ -2,6 +2,7 @@ package com.example.toyproject.domain.board;
 
 import com.example.toyproject.domain.Member;
 import jakarta.persistence.*;
+import jdk.jfr.Category;
 import lombok.*;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,25 +16,27 @@ import static jakarta.persistence.FetchType.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Board {
     @Id
     @GeneratedValue
     @Column(name = "board_id")
-    private Long id;
+    protected Long id;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    protected Member member;
 
     @Column(length = 100, nullable = false)
-    private String title;
+    protected String title;
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
-    private int rate;
+    protected String content;
+    protected int rate;
     @LastModifiedDate
-    private LocalDateTime createdDate;
+    protected LocalDateTime createdDate;
+
+    @Column(name = "dtype", insertable = false, updatable = false)
+    protected BoardCategory dtype;
 
     // 연관관계 편의 메서드
     public void setMember(Member member) {

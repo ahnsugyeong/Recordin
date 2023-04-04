@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 
 @Service
 @RequiredArgsConstructor
-public class MemberSerivceImplV2 implements MemberService{
+public class MemberServiceImplV2 implements MemberService{
 
     private final MemberRepository memberRepository;
 
@@ -20,7 +20,7 @@ public class MemberSerivceImplV2 implements MemberService{
 
     @Override
     public void signUp(Member member) {
-
+        memberRepository.save(member);
     }
 
     @Override
