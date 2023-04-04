@@ -36,7 +36,7 @@ public abstract class Board {
     protected LocalDateTime createdDate;
 
     @Column(name = "dtype", insertable = false, updatable = false)
-    protected BoardCategory dtype;
+    protected String dtype;
 
     // 연관관계 편의 메서드
     public void setMember(Member member) {

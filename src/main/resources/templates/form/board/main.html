@@ -42,7 +42,7 @@
                 <!-- th:href="@{/form/board/{memberId}/{boardId}(memberId=${member.memberId}, boardId=${board.boardId})}" -->
                 <td><a href="item.html" th:href="@{/board/board/{boardId}(boardId=${board.boardId})}"
                        th:text="${board.title}">TITLE_1</a></td>
-                <td th:text="${board.writer}">writerA</td>
+                <td th:text="${board.author}">authorA</td>
                 <td th:text="${board.rate}">10</td>
             </tr>
             </tbody>

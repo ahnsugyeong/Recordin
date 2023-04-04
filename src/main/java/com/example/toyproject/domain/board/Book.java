@@ -22,8 +22,7 @@ public class Book extends Board {
 
     @Builder
     public Book(Long id, Member member, String title, String content,
-                Integer rate, LocalDateTime createdDate, String author, String isbn, BoardCategory dtype) {
-
+                Integer rate, LocalDateTime createdDate, String author, String isbn, String dtype) {
         this.id = id;
         this.member = member;
         this.title = title;
@@ -33,15 +32,20 @@ public class Book extends Board {
         this.author = author;
         this.isbn = isbn;
         this.dtype = dtype;
+        setMember(member);
     }
 
-    public void updateBook(String title, String content,
-                           Integer rate, String author, String isbn) {
+    public void updateBook(Long id, Member member, String title, String content,
+                           Integer rate, LocalDateTime createdDate, String author, String isbn, String dtype) {
+        this.id = id;
+        this.member = member;
         this.title = title;
         this.content = content;
         this.rate = rate;
+        this.createdDate = createdDate;
         this.author = author;
         this.isbn = isbn;
+        this.dtype = dtype;
     }
 }
 

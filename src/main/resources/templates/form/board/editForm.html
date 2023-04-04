@@ -28,14 +28,14 @@
                             <dt>TITLE</dt>
                             <label for="title">title</label>
                             <input type="text" id="title" value="title"
-                                   th:field="*{title}"class="form-control" placeholder="title">
+                                   th:field="*{title}" class="form-control" placeholder="title">
                         </dl>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="writer">writer</label>
                             <input type="text" id="writer" value="aaa" class="form-control"
-                                   th:field="*{writer}" placeholder="who write/make it">
+                                   th:field="*{author}" placeholder="who write/make it">
                         </div>
                         <div class="col">
                             <link href="/css/star.css" rel="stylesheet"/>
@@ -59,7 +59,7 @@
                     <hr class="my-4">
                     <div class="cont">
                         <textarea id="content" value="content" class="form-control"
-                                  th:field="*{content}"placeholder="content">content</textarea>
+                                  th:field="*{content}" placeholder="content">content</textarea>
                     </div>
                 </div>
 
@@ -78,8 +78,8 @@
                     </div>
                 </div>
             </form>
+        </div>
     </div>
 </div>
-
 </body>
 </html>

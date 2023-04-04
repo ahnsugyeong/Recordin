@@ -3,7 +3,6 @@ package com.example.toyproject.dto;
 
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.domain.board.Board;
-import com.example.toyproject.domain.board.BoardCategory;
 import com.example.toyproject.domain.board.Book;
 import com.example.toyproject.domain.board.Movie;
 import lombok.*;
@@ -21,7 +20,7 @@ public class BoardDto {
     private String content;
     private int rate;
     private LocalDateTime createdDate;
-    private BoardCategory dtype = BoardCategory.BOOK;
+    private String dtype = "B";
     private String author;
     private String isbn;
     private String director;
@@ -29,7 +28,7 @@ public class BoardDto {
 
     public Board toEntity() {
         Board board = null;
-        if (dtype == BoardCategory.BOOK) {
+        if (dtype.equals("B")) {
             board = Book.builder()
                     .id(id)
                     .member(member)
@@ -42,7 +41,7 @@ public class BoardDto {
                     .dtype(dtype)
                     .build();
             return board;
-        } else if (dtype == BoardCategory.MOVIE) {
+        } else if (dtype.equals("M")) {
             board = Movie.builder()
                     .id(id)
                     .member(member)
@@ -60,7 +59,7 @@ public class BoardDto {
 
     @Builder
     public BoardDto(Long id, Member member, String title, String content,
-                    Integer rate, LocalDateTime createdDate, String author, String isbn, String director, String imageURL, BoardCategory dtype) {
+                    Integer rate, LocalDateTime createdDate, String author, String isbn, String director, String imageURL, String dtype) {
         this.id = id;
         this.member = member;
         this.title = title;
