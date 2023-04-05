@@ -25,6 +25,7 @@ public class BoardControllerV2 {
     @GetMapping
     public String boards(@SessionAttribute(name = SessionConst.SIGN_IN_MEMBER, required = false) Member member, Model model) {
         if (member == null) return "redirect:/";
+        log.info("login success");
         List<BoardDto> boards = boardService.getBoardList(member);
         model.addAttribute("member", member);
         model.addAttribute("boards", boards);
@@ -55,11 +56,7 @@ public class BoardControllerV2 {
 
     @PostMapping("/{boardId}/edit")
     public String edit(@PathVariable Long boardId, @ModelAttribute BoardDto boardDto) {
-        // 못 받아 옴
-        log.info("board controller edit id = {}", boardDto.getId());
-        log.info("board controller edit title = {}", boardDto.getTitle());
-
-        boardService.updateBoard(boardDto);
+        boardService.updateBoard(boardId, boardDto);
         return "redirect:/board/board/{boardId}";
     }
 

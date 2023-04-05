@@ -39,6 +39,7 @@ public class BoardServiceImplV2 implements BoardService {
     public Long postBoard(BoardDto boardDto) {
         Board board = boardDto.toEntity();
         Board savedBoard = boardRepository.save(board);
+        log.info("board saved!");
         return savedBoard.getId();
     }
 
@@ -51,35 +52,27 @@ public class BoardServiceImplV2 implements BoardService {
 
     @Transactional
     @Override
-    public void updateBoard(BoardDto boardDto) {
-        Board board = boardRepository.findById(boardDto.getId()).get();
+    public void updateBoard(Long boardId, BoardDto boardDto) {
+        Board board = boardRepository.findById(boardId).get();
 
         if (boardDto.getDtype().equals("B")) {
             Book book = ((Book) board);
             book.updateBook(
-                    boardDto.getId(),
-                    boardDto.getMember(),
                     boardDto.getTitle(),
                     boardDto.getContent(),
                     boardDto.getRate(),
-                    boardDto.getCreatedDate(),
                     boardDto.getAuthor(),
-                    boardDto.getIsbn(),
-                    boardDto.getDtype()
+                    boardDto.getIsbn()
             );
 
         } else if (boardDto.getDtype().equals("M")) {
             Movie movie = ((Movie) board);
             movie.updateMovie(
-                    boardDto.getId(),
-                    boardDto.getMember(),
                     boardDto.getTitle(),
                     boardDto.getContent(),
                     boardDto.getRate(),
-                    boardDto.getCreatedDate(),
                     boardDto.getDirector(),
-                    boardDto.getImageURL(),
-                    boardDto.getDtype()
+                    boardDto.getImageURL()
             );
         }
     }

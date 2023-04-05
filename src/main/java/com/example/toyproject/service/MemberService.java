@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface MemberService {
     Long signIn(SignInDto signInDto);
-    void signUp(SignUpDto signUpDto);
+    Long signUp(SignUpDto signUpDto);
     void signOut(HttpSession session);
     void validateDuplicateMember(SignUpDto signUpDto, BindingResult bindingResult);
     //List<BoardDto> getBoardListOfMember(SignInDto signInDto);
