@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @DiscriminatorValue("B")
 @NoArgsConstructor
 public class Book extends Board {
-    @Column(length = 10, nullable = false)
+    @Column(length = 10)
     private String author;
     @Column(length = 10)
     private String isbn;
@@ -35,10 +35,9 @@ public class Book extends Board {
         setMember(member);
     }
 
-    public void updateBook(Long id, Member member, String title, String content,
-                           Integer rate, LocalDateTime createdDate, String author, String isbn, String dtype) {
-        this.id = id;
-        this.member = member;
+    // 필요한 정보만 업데이트 --> Id, member는 변하지 않음
+    public void updateBook(String title, String content, Integer rate, LocalDateTime createdDate,
+                           String author, String isbn, String dtype) {
         this.title = title;
         this.content = content;
         this.rate = rate;

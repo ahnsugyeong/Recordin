@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @DiscriminatorValue("M")
 @NoArgsConstructor
 public class Movie extends Board {
-    @Column(length = 10, nullable = false)
+    @Column(length = 10)
     private String director;
     @Column(length = 10)
     private String imageURL;
@@ -35,10 +35,8 @@ public class Movie extends Board {
         this.dtype = dtype;
     }
 
-    public void updateMovie(Long id, Member member, String title, String content,
+    public void updateMovie(String title, String content,
                             Integer rate, LocalDateTime createdDate, String director, String imageURL, String dtype) {
-        this.id = id;
-        this.member = member;
         this.title = title;
         this.content = content;
         this.rate = rate;
