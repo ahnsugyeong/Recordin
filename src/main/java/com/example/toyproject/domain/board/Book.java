@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @DiscriminatorValue("B")
 @NoArgsConstructor
 public class Book extends Board {
+
     @Column(length = 10)
     @Nullable
     private String author;
@@ -36,6 +37,7 @@ public class Book extends Board {
         this.isbn = isbn;
         this.dtype = dtype;
     }
+
 
     public void updateBook(String title, String content,
                            Integer rate, String author, String isbn) {

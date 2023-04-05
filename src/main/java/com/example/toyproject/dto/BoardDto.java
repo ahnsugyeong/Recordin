@@ -40,7 +40,9 @@ public class BoardDto {
                     .isbn(isbn)
                     .dtype(dtype)
                     .build();
-        } else if (dtype.equals("M")) {
+            return board;
+        } else {                //else if (dtype.equals("M")) --> category 설정이 가능해지면
+
             board = Movie.builder()
                     .id(id)
                     .member(member)

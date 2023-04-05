@@ -1,8 +1,8 @@
 package com.example.toyproject;
 
 import com.example.toyproject.domain.Member;
-import com.example.toyproject.domain.board.Movie;
 import com.example.toyproject.dto.BoardDto;
+import com.example.toyproject.dto.MemberInfoDto;
 import com.example.toyproject.dto.SignUpDto;
 import com.example.toyproject.repository.MemberRepository;
 import com.example.toyproject.service.BoardService;
@@ -33,41 +33,48 @@ public class TestDataInit {
 
     @PostConstruct
     public void init() {
-        SignUpDto signUpDto = SignUpDto.builder().email("test@gmail.com").password("12345678").name("test").build();
-        Long memberId = memberService.signUp(signUpDto);
-        Member member = memberRepository.findById(memberId).get();
+        //Member member = Member.builder().email("test@gmail.com").password("12345678").name("test").build();
+        SignUpDto signUpDto = new SignUpDto("test@gmail.com", "12345678", "test");
+        memberService.signUp(signUpDto);
+        //아래 줄부터 error 발생
+        List<Member> members = memberRepository.findByEmailAndPassword("test@gmail.com", "12345678");
+        Member member = members.stream().findFirst().get();
+        MemberInfoDto memberInfoDto = MemberInfoDto.builder()
+                .email(member.getEmail())
+                .password(member.getPassword())
+                .name(member.getName()).build();
 
-        List<BoardDto> bookList = createBookList(member);
+        List<BoardDto> bookList = createBookList();
+
         for (BoardDto boardDto : bookList) {
-            boardService.postBoard(boardDto);
+            Long postBoardId = boardService.postBoard(boardDto, memberInfoDto);
         }
+
+
     }
-    private List<BoardDto> createBookList(Member member) {
+    private List<BoardDto> createBookList() {
         List<BoardDto> list = new ArrayList<>();
         list.add(BoardDto.builder()
-                .member(member)
                 .title("title1")
                 .content("content1 test test test")
-                .createdDate(LocalDateTime.now())
                 .rate(3)
+                .createdDate(LocalDateTime.now())
                 .author("author1")
                 .isbn("1234-1234-1234-1234")
                 .dtype("B").build());
         list.add(BoardDto.builder()
-                .member(member)
                 .title("title2")
                 .content("content2 test test test")
-                .createdDate(LocalDateTime.now())
                 .rate(3)
+                .createdDate(LocalDateTime.now())
                 .author("author2")
                 .isbn("1234-1234-1234-1234")
                 .dtype("B").build());
         list.add(BoardDto.builder()
-                .member(member)
                 .title("title3")
                 .content("content3 test test test")
-                .createdDate(LocalDateTime.now())
                 .rate(3)
+                .createdDate(LocalDateTime.now())
                 .author("author3")
                 .isbn("1234-1234-1234-1234")
                 .dtype("B").build());

@@ -1,3 +1,4 @@
+
 package com.example.toyproject.service;
 
 import com.example.toyproject.domain.Member;
@@ -132,3 +133,4 @@ class BoardServiceTest {
                 .build();
     }
 }
+
