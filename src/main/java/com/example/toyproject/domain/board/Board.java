@@ -6,6 +6,7 @@ import jdk.jfr.Category;
 import lombok.*;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -39,6 +40,7 @@ public abstract class Board {
     protected String dtype;
 
     // 연관관계 편의 메서드
+    @Transactional
     public void setMember(Member member) {
         this.member = member;
         member.getBoards().add(this);

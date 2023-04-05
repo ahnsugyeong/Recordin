@@ -35,7 +35,7 @@ public class BoardControllerV2 {
         List<BoardDto> boardList = boardService.getBoardList(memberInfoDto);
         model.addAttribute("member", memberInfoDto);
         model.addAttribute("boards", boardList);
-        return "form/board/main";
+
     }
 
 
@@ -69,6 +69,7 @@ public class BoardControllerV2 {
         //log.info("board controller edit title = {}", boardDto.getTitle());
 
         boardService.updateBoard(boardDto, boardId);
+
         return "redirect:/board/board/{boardId}";
     }
 

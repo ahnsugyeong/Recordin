@@ -42,6 +42,7 @@ public class BoardDto {
                     .build();
             return board;
         } else {                //else if (dtype.equals("M")) --> category 설정이 가능해지면
+
             board = Movie.builder()
                     .id(id)
                     .member(member)

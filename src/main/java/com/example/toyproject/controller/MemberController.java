@@ -37,8 +37,8 @@ public class MemberController {
      */
     @GetMapping("/sign-up")
     public String signUpForm(Model model) {
-        model.addAttribute("signUpDto",new SignUpDto());
-        return "form/member/signUpDto";
+        model.addAttribute("signUpForm", new SignUpDto());
+        return "form/member/signUpForm";
     }
 
     @PostMapping("/sign-up")
@@ -80,8 +80,10 @@ public class MemberController {
         // 로그인 성공 세션 처리 (세션에 로그인 회원 정보 보관)
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.SIGN_IN_MEMBER, memberInfoDto);
+
         return "redirect:/";
     }
+
     /**
      * sign-out
      */

@@ -45,6 +45,7 @@ public class BoardServiceImplV2 implements BoardService {
         boardDto.setMember(memberByDto);
         Board board = boardDto.toEntity();
         Board savedBoard = boardRepository.save(board);
+        log.info("board saved!");
         return savedBoard.getId();
     }
 
@@ -57,6 +58,7 @@ public class BoardServiceImplV2 implements BoardService {
 
     @Transactional
     @Override
+
     public void updateBoard(BoardDto boardDto, Long boardId) {
         Board board = boardRepository.findById(boardId).get();
 
@@ -66,10 +68,8 @@ public class BoardServiceImplV2 implements BoardService {
                     boardDto.getTitle(),
                     boardDto.getContent(),
                     boardDto.getRate(),
-                    boardDto.getCreatedDate(),
                     boardDto.getAuthor(),
-                    boardDto.getIsbn(),
-                    boardDto.getDtype()
+                    boardDto.getIsbn()
             );
 
         }  else {        //else if (boardDto.getDtype().equals("M"))->category 설정 가능해지면 set
@@ -78,10 +78,8 @@ public class BoardServiceImplV2 implements BoardService {
                     boardDto.getTitle(),
                     boardDto.getContent(),
                     boardDto.getRate(),
-                    boardDto.getCreatedDate(),
                     boardDto.getDirector(),
-                    boardDto.getImageURL(),
-                    boardDto.getDtype()
+                    boardDto.getImageURL()
             );
         }
     }

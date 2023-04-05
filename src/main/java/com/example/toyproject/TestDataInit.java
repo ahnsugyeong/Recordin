@@ -2,7 +2,7 @@ package com.example.toyproject;
 
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.dto.BoardDto;
-import com.example.toyproject.dto.SignInDto;
+import com.example.toyproject.dto.MemberInfoDto;
 import com.example.toyproject.dto.SignUpDto;
 import com.example.toyproject.repository.MemberRepository;
 import com.example.toyproject.service.BoardService;
@@ -25,6 +25,7 @@ public class TestDataInit {
 
     private final MemberService memberService;
     private final BoardService boardService;
+    private final MemberRepository memberRepository;
 
     /**
      * 테스트용 데이터 추가
@@ -36,17 +37,18 @@ public class TestDataInit {
         SignUpDto signUpDto = new SignUpDto("test@gmail.com", "12345678", "test");
         memberService.signUp(signUpDto);
         //아래 줄부터 error 발생
-//        List<Member> members = memberRepository.findByEmailAndPassword("test@gmail.com", "12345678");
-//        List<BoardDto> bookList = createBookList(members.stream().findFirst());
-//        for (BoardDto boardDto : bookList) {
-//            Long postBoardId = boardService.postBoard(boardDto);
-//        }
+        List<Member> members = memberRepository.findByEmailAndPassword("test@gmail.com", "12345678");
+        Member member = members.stream().findFirst().get();
+        MemberInfoDto memberInfoDto = MemberInfoDto.builder()
+                .email(member.getEmail())
+                .password(member.getPassword())
+                .name(member.getName()).build();
 
-//        SignInDto signInDto = new SignInDto("test@gmail.com", "12345678");
-//        List<BoardDto> bookList = createBookList();
-//        for (BoardDto boardDto : bookList) {
-//            boardService.postBoard(boardDto,memberService.signIn(signInDto).get());
-//        }
+        List<BoardDto> bookList = createBookList();
+
+        for (BoardDto boardDto : bookList) {
+            Long postBoardId = boardService.postBoard(boardDto, memberInfoDto);
+        }
 
 
     }

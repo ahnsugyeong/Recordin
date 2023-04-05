@@ -14,7 +14,8 @@ import java.util.Optional;
 public interface MemberService {
 
     MemberInfoDto signIn(SignInDto signInDto);
-    void signUp(SignUpDto signUpDto);
+    Long signUp(SignUpDto signUpDto);
+
     void signOut(HttpSession session);
     void validateDuplicateMember(SignUpDto signUpDto, BindingResult bindingResult);
     //List<BoardDto> getBoardListOfMember();
