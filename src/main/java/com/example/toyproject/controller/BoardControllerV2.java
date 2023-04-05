@@ -35,7 +35,7 @@ public class BoardControllerV2 {
         List<BoardDto> boardList = boardService.getBoardList(memberInfoDto);
         model.addAttribute("member", memberInfoDto);
         model.addAttribute("boards", boardList);
-
+        return "form/board/main";
     }
 
 
