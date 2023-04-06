@@ -23,21 +23,20 @@
             <div class="board_write_wrap">
                 <div class="board_write">
                     <div class="title">
-                        <dl>
-                            <dt th:text="#{label.board.title}">TITLE</dt>
-                            <label for="title">title</label>
-                            <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="title">
-                        </dl>
+                        <label for="title" th:text="#{label.board.title}">title</label>
+                        <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="title">
                     </div>
+                    <!-- change.made -->
                     <div class="row">
                         <div class="col">
                             <label for="writer" th:text="#{label.board.writer}">writer</label>
                             <input type="text" id="writer" th:field="*{author}"class="form-control" placeholder="who write/make it">
                         </div>
+                        <!-- change.made-->
                         <div class="col">
                             <link href="/css/star.css" rel="stylesheet"/>
-                            <p>rate</p>
-                            <div class="mb-3" name="myform" id="myform">
+                            <p th:text="#{label.board.rate}">rate</p>
+                            <div class="mb-3" name="myform" id="myform" >
                                 <fieldset>
                                     <input type="radio" name="reviewStar" value="5" id="rate1" th:field="*{rate}"><label
                                         for="rate1">★</label>
@@ -52,9 +51,31 @@
                                 </fieldset>
                             </div>
                         </div>
+                        <!-- change.imageLink -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="isbn">
+                                    <label for="title" th:text="#{label.board.imageLink}">title</label>
+                                    <input type="text" id="isbn" th:field="*{isbn}" class="form-control"
+                                           placeholder="book image">
+                                </div>
+                            </div>
+                            <!-- change.imageLink -->
+                            <div class="col">
+                                <div>
+                                    <a th:text="#{board.category}">category</a>
+                                    <select th:field="*{dtype}" class="form-select">
+                                        <option value="B" th:text="#{board.category.book}">책</option>
+                                        <option value="M" th:text="#{board.category.movie}">영화</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
                         <hr class="my-4">
                         <div class="cont">
-                            <textarea id="content" class="form-control" th:field="*{content}"
+                            <textarea id="content" th:text="#{label.board.content}"
+                                      class="form-control" th:field="*{content}"
                                       placeholder="content">content</textarea>
                         </div>
                     </div>
@@ -78,6 +99,5 @@
     </div>
 </div>
 </div>
-
 </body>
 </html>

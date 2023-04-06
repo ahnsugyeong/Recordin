@@ -2,7 +2,6 @@ package com.example.toyproject.domain.board;
 
 import com.example.toyproject.domain.Member;
 import jakarta.persistence.*;
-import jdk.jfr.Category;
 import lombok.*;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,9 +18,13 @@ import static jakarta.persistence.FetchType.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
+@SequenceGenerator(name = "BOARD_SEQ_GENERATOR",
+        sequenceName = "BOARD_SEQ",
+        initialValue = 1,
+        allocationSize = 1)
 public abstract class Board {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_SEQ_GENERATOR")
     @Column(name = "board_id")
     protected Long id;
     @ManyToOne(fetch = LAZY)
@@ -45,6 +48,4 @@ public abstract class Board {
         this.member = member;
         member.getBoards().add(this);
     }
-
-
 }
