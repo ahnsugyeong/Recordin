@@ -35,6 +35,7 @@
                 <th th:text="#{label.board.title}">title</th>
                 <th th:text="#{label.board.writer}">writer</th>
                 <th th:text="#{label.board.rate}">rate</th>
+                <th th:text="#{board.category}">rate</th>
             </tr>
             </thead>
             <tbody>
@@ -44,6 +45,7 @@
                        th:text="${board.title}">TITLE_1</a></td>
                 <td th:text="${board.author}">authorA</td>
                 <td th:text="${board.rate}">10</td>
+                <td th:text="${board.dtype}">B</td>
             </tr>
             </tbody>
         </table>
