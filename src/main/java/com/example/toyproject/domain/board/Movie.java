@@ -19,8 +19,6 @@ import java.time.LocalDateTime;
 public class Movie extends Board {
     @Column(length = 10)
     private String director;
-    @Column(length = 10)
-    private String imageURL;
 
     @Builder
     public Movie(Long id, Member member, String title, String content,

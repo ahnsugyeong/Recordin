@@ -51,6 +51,7 @@ public class TestDataInit {
 
 
     }
+
     private List<BoardDto> createBookList() {
         List<BoardDto> list = new ArrayList<>();
         list.add(BoardDto.builder()
@@ -58,24 +59,24 @@ public class TestDataInit {
                 .content("content1 test test test")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
-                .author("author1")
-                .isbn("1234-1234-1234-1234")
+                .creator("author1")
+                .imageURL("https://shopping-phinf.pstatic.net/main_3246668/32466681076.20230406112706.jpg")
                 .dtype("B").build());
         list.add(BoardDto.builder()
                 .title("testdatainit title2")
                 .content("content2 test test test")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
-                .author("author2")
-                .isbn("1234-1234-1234-1234")
+                .creator("author1")
+                .imageURL("https://shopping-phinf.pstatic.net/main_3246668/32466681076.20230406112706.jpg")
                 .dtype("B").build());
         list.add(BoardDto.builder()
                 .title("testdatainit title3")
                 .content("content3 test test test")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
-                .author("author3")
-                .isbn("1234-1234-1234-1234")
+                .creator("author1")
+                .imageURL("https://shopping-phinf.pstatic.net/main_3246668/32466681076.20230406112706.jpg")
                 .dtype("B").build());
         return list;
     }

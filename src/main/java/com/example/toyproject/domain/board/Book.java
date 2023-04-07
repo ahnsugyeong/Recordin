@@ -20,13 +20,10 @@ public class Book extends Board {
     @Column(length = 10)
     @Nullable
     private String author;
-    @Column(length = 100)
-    @Nullable
-    private String isbn;
 
     @Builder
     public Book(Long id, Member member, String title, String content,
-                Integer rate, LocalDateTime createdDate, String author, String isbn, String dtype) {
+                Integer rate, LocalDateTime createdDate, String imageURL, String author, String dtype) {
         this.id = id;
         this.member = member;
         this.title = title;
@@ -34,18 +31,18 @@ public class Book extends Board {
         this.createdDate = createdDate;
         this.rate = rate;
         this.author = author;
-        this.isbn = isbn;
+        this.imageURL = imageURL;
         this.dtype = dtype;
     }
 
 
     public void updateBook(String title, String content,
-                           Integer rate, String author, String isbn) {
+                           Integer rate, String author, String imageURL) {
         this.title = title;
         this.content = content;
         this.rate = rate;
         this.author = author;
-        this.isbn = isbn;
+        this.imageURL = imageURL;
     }
 }
 

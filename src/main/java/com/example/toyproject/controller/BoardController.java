@@ -61,9 +61,6 @@ public class BoardController {
 
     @PostMapping("/{boardId}/edit")
     public String edit(@PathVariable Long boardId, @ModelAttribute("board") BoardDto boardDto) {
-        // 못 받아 옴  --> 새로운 dto 객체 형성에 id 정보가 없어지기 때문..?
-        //log.info("board controller edit id = {}", boardDto.getId());
-        //log.info("board controller edit title = {}", boardDto.getTitle());
 
         boardService.updateBoard(boardDto, boardId);
 
