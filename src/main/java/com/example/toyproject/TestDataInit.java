@@ -33,10 +33,9 @@ public class TestDataInit {
 
     @PostConstruct
     public void init() {
-        //Member member = Member.builder().email("test@gmail.com").password("12345678").name("test").build();
         SignUpDto signUpDto = new SignUpDto("test@gmail.com", "12345678", "test");
         memberService.signUp(signUpDto);
-        //아래 줄부터 error 발생
+
         List<Member> members = memberRepository.findByEmailAndPassword("test@gmail.com", "12345678");
         Member member = members.stream().findFirst().get();
         MemberInfoDto memberInfoDto = MemberInfoDto.builder()
@@ -55,7 +54,7 @@ public class TestDataInit {
     private List<BoardDto> createBookList() {
         List<BoardDto> list = new ArrayList<>();
         list.add(BoardDto.builder()
-                .title("title1")
+                .title("testdatainit title1")
                 .content("content1 test test test")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
@@ -63,7 +62,7 @@ public class TestDataInit {
                 .isbn("1234-1234-1234-1234")
                 .dtype("B").build());
         list.add(BoardDto.builder()
-                .title("title2")
+                .title("testdatainit title2")
                 .content("content2 test test test")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
@@ -71,7 +70,7 @@ public class TestDataInit {
                 .isbn("1234-1234-1234-1234")
                 .dtype("B").build());
         list.add(BoardDto.builder()
-                .title("title3")
+                .title("testdatainit title3")
                 .content("content3 test test test")
                 .rate(3)
                 .createdDate(LocalDateTime.now())

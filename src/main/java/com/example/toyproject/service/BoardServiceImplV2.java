@@ -45,7 +45,6 @@ public class BoardServiceImplV2 implements BoardService {
         boardDto.setMember(memberByDto);
         Board board = boardDto.toEntity();
         Board savedBoard = boardRepository.save(board);
-        log.info("board saved!");
         return savedBoard.getId();
     }
 
