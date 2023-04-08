@@ -42,6 +42,8 @@ public abstract class Board {
     @Column(name = "dtype", insertable = false, updatable = false)
     protected String dtype;
 
+    protected String imageURL;
+
     // 연관관계 편의 메서드
     @Transactional
     public void setMember(Member member) {

@@ -21,9 +21,7 @@ public class BoardDto {
     private int rate;
     private LocalDateTime createdDate;
     private String dtype = "B";
-    private String author;
-    private String isbn;
-    private String director;
+    private String creator; // Book: author, Movie: director
     private String imageURL;
 
     public Board toEntity() {
@@ -36,8 +34,8 @@ public class BoardDto {
                     .content(content)
                     .rate(rate)
                     .createdDate(createdDate)
-                    .author(author)
-                    .isbn(isbn)
+                    .author(creator)
+                    .imageURL(imageURL)
                     .dtype(dtype)
                     .build();
             return board;
@@ -50,7 +48,7 @@ public class BoardDto {
                     .content(content)
                     .rate(rate)
                     .createdDate(createdDate)
-                    .director(director)
+                    .director(creator)
                     .imageURL(imageURL)
                     .dtype(dtype)
                     .build();
@@ -60,17 +58,15 @@ public class BoardDto {
 
     @Builder
     public BoardDto(Long id, Member member, String title, String content,
-                    Integer rate, LocalDateTime createdDate, String author, String isbn, String director, String imageURL, String dtype) {
+                    Integer rate, LocalDateTime createdDate, String creator, String imageURL, String dtype) {
         this.id = id;
         this.member = member;
         this.title = title;
         this.content = content;
         this.createdDate = createdDate;
         this.rate = rate;
-        this.author = author;
-        this.director = director;
+        this.creator = creator;
         this.imageURL = imageURL;
-        this.isbn = isbn;
         this.dtype = dtype;
     }
 

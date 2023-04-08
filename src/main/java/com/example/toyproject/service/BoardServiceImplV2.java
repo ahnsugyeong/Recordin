@@ -67,8 +67,8 @@ public class BoardServiceImplV2 implements BoardService {
                     boardDto.getTitle(),
                     boardDto.getContent(),
                     boardDto.getRate(),
-                    boardDto.getAuthor(),
-                    boardDto.getIsbn()
+                    boardDto.getCreator(),
+                    boardDto.getImageURL()
             );
 
         }  else {        //else if (boardDto.getDtype().equals("M"))->category 설정 가능해지면 set
@@ -77,7 +77,7 @@ public class BoardServiceImplV2 implements BoardService {
                     boardDto.getTitle(),
                     boardDto.getContent(),
                     boardDto.getRate(),
-                    boardDto.getDirector(),
+                    boardDto.getCreator(),
                     boardDto.getImageURL()
             );
         }
@@ -99,10 +99,10 @@ public class BoardServiceImplV2 implements BoardService {
                     .member(book.getMember())
                     .title(book.getTitle())
                     .content(book.getContent())
-                    .rate(book.getRate())
                     .createdDate(book.getCreatedDate())
-                    .author(book.getAuthor())
-                    .isbn(book.getIsbn())
+                    .rate(book.getRate())
+                    .creator(book.getAuthor())
+                    .imageURL(book.getImageURL())
                     .dtype(book.getDtype())
                     .build();
         } else {  //category 설정이 가능해지면 조건문 설정 ->board.getDtype().equals("M")
@@ -112,9 +112,9 @@ public class BoardServiceImplV2 implements BoardService {
                     .member(movie.getMember())
                     .title(movie.getTitle())
                     .content(movie.getContent())
-                    .rate(movie.getRate())
                     .createdDate(movie.getCreatedDate())
-                    .director(movie.getDirector())
+                    .rate(movie.getRate())
+                    .creator(movie.getDirector())
                     .imageURL(movie.getImageURL())
                     .dtype(movie.getDtype())
                     .build();
