@@ -19,7 +19,9 @@
             float: right;
         }
     </style>
+
     <title>write</title>
+
 </head>
 
 <body>
@@ -31,17 +33,22 @@
                 <p>write what you mind</p>
             </div>
             <div class="board_write_wrap">
+
+                <button class="w-100 btn btn-dark btn-lg" onclick="openPopup()" type="button">검색</button>
+
+                <script th:src="@{/js/popup.js}"></script>
+
                 <div class="board_write">
                     <div id="section">
                         <div class="title">
-                            <label for="title" th:text="#{label.board.title}">title</label>
-                            <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="title">
+                            <label for="add_form_title" th:text="#{label.board.title}">title</label>
+                            <input type="text" id="add_form_title" th:field="*{title}" class="form-control" placeholder="title">
                         </div>
                         <!-- change.made -->
                         <div class="row">
                             <div class="col">
-                                <label for="writer" th:text="#{label.board.writer}">writer</label>
-                                <input type="text" id="writer" th:field="*{creator}"class="form-control" placeholder="who write/make it">
+                                <label for="add_form_writer" th:text="#{label.board.writer}">writer</label>
+                                <input type="text" id="add_form_writer" th:field="*{creator}"class="form-control" placeholder="who write/make it">
                             </div>
                             <!-- change.made-->
                             <div class="col">
@@ -92,7 +99,7 @@
                 </div>
                 <div id="nav">
                     <a>FILE URL</a>
-                    <input th:field="*{imageURL}" class="form-control" placeholder="search Link"/>
+                    <input th:field="*{imageURL}" class="form-control" placeholder="search Link" id="add_form_imageURL"/>
                 </div>
             </div>
         </form>
