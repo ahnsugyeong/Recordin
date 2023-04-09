@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +36,22 @@ public class BookController {
     @PostMapping("/board/book-search")
     public String search(@ModelAttribute("keyword") String keyword, Model model) {
         try {
-            Document doc = Jsoup.connect("https://openapi.naver.com/v1/search/book.json?query=" + URLEncoder.encode(keyword, "UTF-8"))
+
+            String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
+            String url = "https://openapi.naver.com/v1/search/book.json?query=" + encodedKeyword;
+            Document doc = Jsoup.connect(url)
                     .header("X-Naver-Client-Id", CLIENT_ID)
                     .header("X-Naver-Client-Secret", CLIENT_SECRET)
                     .ignoreContentType(true)
                     .get();
 
-            JSONObject jsonObject = new JSONObject(doc.text());
+            log.info(url);
+            log.info(doc.text());
+
+            JSONObject jsonObject = new JSONObject(URLDecoder.decode(doc.text(), "UTF-8"));
             JSONArray jsonArray = (JSONArray) jsonObject.get("items");
             List<BoardSearchDto> boardSearchDtoList = new ArrayList<>();
+
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
                 String title = obj.getString("title");

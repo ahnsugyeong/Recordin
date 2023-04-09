@@ -10,17 +10,21 @@ function selectElementInfo(selectedElement) {
     addDataToForm();
 }
 
-// 데이터를 테이블에 추가하는 함수
+// 선택된 데이터를 add form 에 추가하는 함수
 function addDataToForm() {
 
     let elements = ele.getElementsByTagName("td");
+    console.log("선택한 이미지 태그: ", elements[0].querySelector('img').getAttribute('src'));
+    console.log("선택한 td 태그: ", elements[1].innerText);
+    console.log("선택한 td 태그: ", elements[2].innerText);
+
     let data = {
-        imageURL: elements[0].innerText,
+        imageURL: elements[0].querySelector('img').getAttribute('src'),
         title: elements[1].innerText,
         creator: elements[2].innerText
     };
 
-    // TODO imageURL 추가
+    document.getElementById("add_form_imageURL").value = data.imageURL;
     document.getElementById("add_form_title").value = data.title;
     document.getElementById("add_form_writer").value = data.creator;
 }
