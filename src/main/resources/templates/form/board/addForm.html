@@ -6,7 +6,17 @@
           href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
-            max-width: 560px;
+            max-width: 900px;
+        }
+        #nav {
+            float: left;
+            width: 340px;
+            padding: 5px;
+        }
+        #section{
+            width: 530px;
+            padding: 10px;
+            float: right;
         }
     </style>
     <title>write</title>
@@ -22,75 +32,71 @@
             </div>
             <div class="board_write_wrap">
                 <div class="board_write">
-                    <div class="title">
-                        <label for="title" th:text="#{label.board.title}">title</label>
-                        <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="title">
-                    </div>
-                    <!-- change.made -->
-                    <div class="row">
-                        <div class="col">
-                            <label for="writer" th:text="#{label.board.writer}">writer</label>
-                            <input type="text" id="writer" th:field="*{creator}"class="form-control" placeholder="who write/make it">
+                    <div id="section">
+                        <div class="title">
+                            <label for="title" th:text="#{label.board.title}">title</label>
+                            <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="title">
                         </div>
-                        <!-- change.made-->
-                        <div class="col">
-                            <link href="/css/star.css" rel="stylesheet"/>
-                            <p th:text="#{label.board.rate}">rate</p>
-                            <div class="mb-3" name="myform" id="myform" >
-                                <fieldset>
-                                    <input type="radio" name="reviewStar" value="5" id="rate1" th:field="*{rate}"><label
-                                        for="rate1">★</label>
-                                    <input type="radio" name="reviewStar" value="4" id="rate2" th:field="*{rate}"><label
-                                        for="rate2">★</label>
-                                    <input type="radio" name="reviewStar" value="3" id="rate3" th:field="*{rate}"><label
-                                        for="rate3">★</label>
-                                    <input type="radio" name="reviewStar" value="2" id="rate4" th:field="*{rate}"><label
-                                        for="rate4">★</label>
-                                    <input type="radio" name="reviewStar" value="1" id="rate5" th:field="*{rate}"><label
-                                        for="rate5">★</label>
-                                </fieldset>
-                            </div>
-                        </div>
-                        <!-- change.imageLink -->
+                        <!-- change.made -->
                         <div class="row">
-                            <!-- change.imageLink -->
                             <div class="col">
-                                <div>
-                                    <a th:text="#{board.category}">category</a>
-                                    <select th:field="*{dtype}" class="form-select">
-                                        <option value="B" th:text="#{board.category.book}">책</option>
-                                        <option value="M" th:text="#{board.category.movie}">영화</option>
-                                    </select>
+                                <label for="writer" th:text="#{label.board.writer}">writer</label>
+                                <input type="text" id="writer" th:field="*{creator}"class="form-control" placeholder="who write/make it">
+                            </div>
+                            <!-- change.made-->
+                            <div class="col">
+                                <link href="/css/star.css" rel="stylesheet"/>
+                                <p th:text="#{label.board.rate}">rate</p>
+                                <div class="mb-3" name="myform" id="myform" >
+                                    <fieldset>
+                                        <input type="radio" name="reviewStar" value="5" id="rate1" th:field="*{rate}"><label
+                                            for="rate1">★</label>
+                                        <input type="radio" name="reviewStar" value="4" id="rate2" th:field="*{rate}"><label
+                                            for="rate2">★</label>
+                                        <input type="radio" name="reviewStar" value="3" id="rate3" th:field="*{rate}"><label
+                                            for="rate3">★</label>
+                                        <input type="radio" name="reviewStar" value="2" id="rate4" th:field="*{rate}"><label
+                                            for="rate4">★</label>
+                                        <input type="radio" name="reviewStar" value="1" id="rate5" th:field="*{rate}"><label
+                                            for="rate5">★</label>
+                                    </fieldset>
                                 </div>
                             </div>
                         </div>
-
+                        <div>
+                            <a th:text="#{board.category}">category</a>
+                            <select th:field="*{category}" class="form-select">
+                                <option value="BOOK" th:text="#{board.category.book}">책</option>
+                                <option value="MOVIE" th:text="#{board.category.movie}">영화</option>
+                            </select>
+                        </div>
                         <hr class="my-4">
                         <div class="cont">
                             <textarea id="content" th:text="#{label.board.content}"
                                       class="form-control" th:field="*{content}"
                                       placeholder="content">content</textarea>
                         </div>
+                        <hr class="my-4">
+                        <div class="row">
+                            <div class="col">
+                                <button class="w-100 btn btn-primary btn-lg" th:text="#{button.save}"type="submit">save</button>
+                            </div>
+                            <div class="col">
+                                <button class="w-100 btn btn-secondary btn-lg"
+                                        th:onclick="|location.href='@{/board}'|"
+                                        onclick="location.href='main.html'" th:text="#{button.cancel}"type="button">cancel
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <hr class="my-4">
-
-            <div class="row">
-                <div class="col">
-                    <button class="w-100 btn btn-primary btn-lg" th:text="#{button.save}"type="submit">save</button>
-                </div>
-                <div class="col">
-                    <button class="w-100 btn btn-secondary btn-lg"
-                            th:onclick="|location.href='@{/board}'|"
-                            onclick="location.href='main.html'" th:text="#{button.cancel}"type="button">cancel
-                    </button>
+                <div id="nav">
+                    <a>FILE URL</a>
+                    <input th:field="*{imageURL}" class="form-control" placeholder="search Link"/>
                 </div>
             </div>
         </form>
     </div>
-</div>
 </div>
 </body>
 </html>

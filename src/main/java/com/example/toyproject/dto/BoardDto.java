@@ -1,10 +1,9 @@
 
 package com.example.toyproject.dto;
 
+import com.example.toyproject.domain.Category;
 import com.example.toyproject.domain.Member;
-import com.example.toyproject.domain.board.Board;
-import com.example.toyproject.domain.board.Book;
-import com.example.toyproject.domain.board.Movie;
+import com.example.toyproject.domain.Board;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,45 +19,35 @@ public class BoardDto {
     private String content;
     private int rate;
     private LocalDateTime createdDate;
-    private String dtype = "B";
+    private String category;
     private String creator; // Book: author, Movie: director
     private String imageURL;
 
     public Board toEntity() {
-        Board board = null;
-        if (dtype.equals("B")) {
-            board = Book.builder()
-                    .id(id)
-                    .member(member)
-                    .title(title)
-                    .content(content)
-                    .rate(rate)
-                    .createdDate(createdDate)
-                    .author(creator)
-                    .imageURL(imageURL)
-                    .dtype(dtype)
-                    .build();
-            return board;
-        } else {                //else if (dtype.equals("M")) --> category 설정이 가능해지면
-
-            board = Movie.builder()
-                    .id(id)
-                    .member(member)
-                    .title(title)
-                    .content(content)
-                    .rate(rate)
-                    .createdDate(createdDate)
-                    .director(creator)
-                    .imageURL(imageURL)
-                    .dtype(dtype)
-                    .build();
+        //dto에 가져온 value를 enum형식으로 변경
+        Category categoryByDto = null;
+        if (category.equals("BOOK")) {
+            categoryByDto = Category.BOOK;
+        } else if (category.equals("MOVIE")) {
+            categoryByDto = Category.MOVIE;
         }
+        Board board = Board.builder()
+                .id(id)
+                .member(member)
+                .title(title)
+                .content(content)
+                .rate(rate)
+                .createdDate(createdDate)
+                .madeBy(creator)
+                .imageURL(imageURL)
+                .category(categoryByDto)
+                .build();
         return board;
     }
 
     @Builder
     public BoardDto(Long id, Member member, String title, String content,
-                    Integer rate, LocalDateTime createdDate, String creator, String imageURL, String dtype) {
+                    Integer rate, LocalDateTime createdDate, String creator, String imageURL, String category) {
         this.id = id;
         this.member = member;
         this.title = title;
@@ -67,7 +56,7 @@ public class BoardDto {
         this.rate = rate;
         this.creator = creator;
         this.imageURL = imageURL;
-        this.dtype = dtype;
+        this.category = category;
     }
 
 }

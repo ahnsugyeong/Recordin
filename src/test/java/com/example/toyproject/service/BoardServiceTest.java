@@ -61,7 +61,7 @@ class BoardServiceTest {
         for (BoardDto dto : boardList) {
             System.out.println("===" +  dto.getId() + "===");
             System.out.println("title = " + dto.getTitle());
-            System.out.println("author = " + dto.getAuthor());
+            System.out.println("author = " + dto.getCreator());
         }
 
         System.out.println("postBoardId = " + postBoardId);
@@ -120,9 +120,9 @@ class BoardServiceTest {
                 .content("content")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
-                .author("author")
-                .isbn("1234-1234-1234-1234")
-                .dtype("B").build();
+                .creator("author")
+                .imageURL("1234-1234-1234-1234")
+                .category("BOOK").build();
     }
 
     private List<BoardDto> createBookList(Member member) {
@@ -133,27 +133,27 @@ class BoardServiceTest {
                 .content("content1")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
-                .author("author")
-                .isbn("1234-1234-1234-1234")
-                .dtype("B").build());
+                .creator("author")
+                .imageURL("1234-1234-1234-1234")
+                .category("BOOK").build());
         list.add(BoardDto.builder()
                 .member(member)
                 .title("test title2")
                 .content("content2")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
-                .author("author")
-                .isbn("1234-1234-1234-1234")
-                .dtype("B").build());
+                .creator("author")
+                .imageURL("1234-1234-1234-1234")
+                .category("BOOK").build());
         list.add(BoardDto.builder()
                 .member(member)
                 .title("test title3")
                 .content("content3")
                 .rate(3)
                 .createdDate(LocalDateTime.now())
-                .author("author")
-                .isbn("1234-1234-1234-1234")
-                .dtype("B").build());
+                .creator("author")
+                .imageURL("1234-1234-1234-1234")
+                .category("BOOK").build());
         return list;
     }
 

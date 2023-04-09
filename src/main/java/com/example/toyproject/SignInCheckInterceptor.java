@@ -1,7 +1,5 @@
 package com.example.toyproject;
 
-import com.example.toyproject.domain.Member;
-import com.example.toyproject.domain.board.Board;
 import com.example.toyproject.repository.BoardRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,9 +1,8 @@
 package com.example.toyproject.service;
 
+import com.example.toyproject.domain.Category;
 import com.example.toyproject.domain.Member;
-import com.example.toyproject.domain.board.Board;
-import com.example.toyproject.domain.board.Book;
-import com.example.toyproject.domain.board.Movie;
+import com.example.toyproject.domain.Board;
 import com.example.toyproject.dto.BoardDto;
 import com.example.toyproject.dto.MemberInfoDto;
 import com.example.toyproject.repository.BoardRepository;
@@ -28,7 +27,7 @@ public class BoardServiceImplV2 implements BoardService {
     @Override
     public List<BoardDto> getBoardList(MemberInfoDto memberInfoDto) {
         Member memberByDto = findMemberByDto(memberInfoDto);
-        List<Board> boardList = boardRepository.findByMember(memberByDto);
+        List<Board> boardList = memberByDto.getBoards();        //member안의 board를 꺼내도록 수정
         List<BoardDto> boardDtoList = new ArrayList<>();
 
         for (Board board : boardList) {
@@ -57,30 +56,24 @@ public class BoardServiceImplV2 implements BoardService {
 
     @Transactional
     @Override
-
     public void updateBoard(BoardDto boardDto, Long boardId) {
         Board board = boardRepository.findById(boardId).get();
-
-        if (boardDto.getDtype().equals("B")) {
-            Book book = ((Book) board);
-            book.updateBook(
-                    boardDto.getTitle(),
-                    boardDto.getContent(),
-                    boardDto.getRate(),
-                    boardDto.getCreator(),
-                    boardDto.getImageURL()
-            );
-
-        }  else {        //else if (boardDto.getDtype().equals("M"))->category 설정 가능해지면 set
-            Movie movie = ((Movie) board);
-            movie.updateMovie(
-                    boardDto.getTitle(),
-                    boardDto.getContent(),
-                    boardDto.getRate(),
-                    boardDto.getCreator(),
-                    boardDto.getImageURL()
-            );
+        //enum형식 변환
+        Category categoryByDto = null;
+        if (boardDto.getCategory().equals("BOOK")) {
+            categoryByDto = Category.BOOK;
+        } else if (boardDto.getCategory().equals("MOVIE")) {
+            categoryByDto = Category.MOVIE;
         }
+        //update
+        board.updateBoard(
+                boardDto.getTitle(),
+                boardDto.getContent(),
+                boardDto.getRate(),
+                boardDto.getCreator(),
+                categoryByDto,
+                boardDto.getImageURL()
+        );
     }
 
     //dto를 통한 mapping 메서드
@@ -91,38 +84,20 @@ public class BoardServiceImplV2 implements BoardService {
     }
 
     private BoardDto EntityToBoardDto(Board board) {
-        BoardDto boardDto = null;
-        if (board.getDtype().equals("B")) {
-            Book book = (Book) board;
-            boardDto = BoardDto.builder()
-                    .id(book.getId())
-                    .member(book.getMember())
-                    .title(book.getTitle())
-                    .content(book.getContent())
-                    .createdDate(book.getCreatedDate())
-                    .rate(book.getRate())
-                    .creator(book.getAuthor())
-                    .imageURL(book.getImageURL())
-                    .dtype(book.getDtype())
-                    .build();
-        } else {  //category 설정이 가능해지면 조건문 설정 ->board.getDtype().equals("M")
-            Movie movie = (Movie) board;
-            boardDto = BoardDto.builder()
-                    .id(movie.getId())
-                    .member(movie.getMember())
-                    .title(movie.getTitle())
-                    .content(movie.getContent())
-                    .createdDate(movie.getCreatedDate())
-                    .rate(movie.getRate())
-                    .creator(movie.getDirector())
-                    .imageURL(movie.getImageURL())
-                    .dtype(movie.getDtype())
-                    .build();
-        }
+        BoardDto boardDto = BoardDto.builder()
+                .id(board.getId())
+                .member(board.getMember())
+                .title(board.getTitle())
+                .content(board.getContent())
+                .createdDate(board.getCreatedDate())
+                .rate(board.getRate())
+                .creator(board.getMadeBy())
+                .imageURL(board.getImageURL())
+                .category(String.valueOf(board.getCategory()))
+                .build();
 
         return boardDto;
     }
-
 
 }
 
