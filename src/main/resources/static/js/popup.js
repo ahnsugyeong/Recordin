@@ -1,5 +1,5 @@
 function openPopup() {
-    var popup = window.open("/board/book-search", "도서 검색", "width=400, height=300");
+    var popup = window.open("/board/book-search", "도서 검색", "width=500, height=500");
     popup.focus();
 }
 
