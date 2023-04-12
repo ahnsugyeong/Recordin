@@ -7,7 +7,7 @@
 </head>
 <body>
 <!--김영한 스프링에서 쓰던 css파일 사용-->
-<div class="container" style="max-width: 600px">
+<div class="container" style="max-width: 900px">
     <div class="py-5 text-center">
         <h2 th:text="|${member.name}님의 REVIEW_LIST|">REVIEW_LIST</h2>
     </div>
@@ -45,7 +45,7 @@
                        th:text="${board.title}">TITLE_1</a></td>
                 <td th:text="${board.creator}">authorA</td>
                 <td th:text="${board.rate}">10</td>
-                <td th:text="${board.dtype}">B</td>
+                <td th:text="${board.category}">B</td>
             </tr>
             </tbody>
         </table>

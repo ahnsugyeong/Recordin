@@ -61,7 +61,7 @@ public class TestDataInit {
                 .createdDate(LocalDateTime.now())
                 .creator("author1")
                 .imageURL("https://shopping-phinf.pstatic.net/main_3246668/32466681076.20230406112706.jpg")
-                .dtype("B").build());
+                .category("BOOK").build());
         list.add(BoardDto.builder()
                 .title("testdatainit title2")
                 .content("content2 test test test")
@@ -69,7 +69,7 @@ public class TestDataInit {
                 .createdDate(LocalDateTime.now())
                 .creator("author1")
                 .imageURL("https://shopping-phinf.pstatic.net/main_3246668/32466681076.20230406112706.jpg")
-                .dtype("B").build());
+                .category("BOOK").build());
         list.add(BoardDto.builder()
                 .title("testdatainit title3")
                 .content("content3 test test test")
@@ -77,7 +77,7 @@ public class TestDataInit {
                 .createdDate(LocalDateTime.now())
                 .creator("author1")
                 .imageURL("https://shopping-phinf.pstatic.net/main_3246668/32466681076.20230406112706.jpg")
-                .dtype("B").build());
+                .category("BOOK").build());
         return list;
     }
 

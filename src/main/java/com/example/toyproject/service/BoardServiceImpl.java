@@ -2,7 +2,7 @@
 //
 //import com.example.toyproject.SessionConst;
 //import com.example.toyproject.domain.Member;
-//import com.example.toyproject.domain.board.Board;
+//import com.example.toyproject.domain.Board;
 //import com.example.toyproject.dto.BoardDto;
 //import com.example.toyproject.repository.BoardRepository;
 //import jakarta.servlet.http.HttpSession;

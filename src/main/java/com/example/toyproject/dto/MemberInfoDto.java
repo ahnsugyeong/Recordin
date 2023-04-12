@@ -1,9 +1,6 @@
 package com.example.toyproject.dto;
 
-import com.example.toyproject.domain.board.Board;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
