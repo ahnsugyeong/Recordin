@@ -1,4 +1,5 @@
 function openPopup() {
+//카테고리 버튼에 따라 도서 검색 or 영화 검색 선택
     var selectBox = document.getElementById("category");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     var path = ""
@@ -40,16 +41,6 @@ function addDataToForm() {
     document.getElementById("add_form_creator").value = data.creator;
 }
 
-//카테고리 버튼에 따라 도서 검색 or 영화 검색 선택
-function getPath(path) {
-  var selectBox = document.getElementById("category");
-  var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-  console.log("선택한 요소: ", selectedValue);
 
-  if (selectedValue === "BOOK") {
-    path = "/board/book-search";
-  } else if (selectedValue === "MOVIE") {
-    path = "/board/movie-search";
-  }
-}
+
 

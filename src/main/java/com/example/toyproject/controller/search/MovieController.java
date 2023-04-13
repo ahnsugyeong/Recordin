@@ -1,4 +1,4 @@
-package com.example.toyproject.controller;
+package com.example.toyproject.controller.search;
 
 import com.example.toyproject.dto.BoardSearchDto;
 import lombok.extern.slf4j.Slf4j;
