@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,20 +22,21 @@ import java.util.List;
 
 @Controller
 @Slf4j
+@RequestMapping("/board/book-search")
 public class BookController {
 
     // 네이버 도서 검색 api key
     private final String CLIENT_ID = "22MWQam8qBycNFDUAGCp";
     private final String CLIENT_SECRET = "r84H3YH0Ba";
 
-    @GetMapping("/board/book-search")
+    @GetMapping
     public String home(Model model) {
         String keyword = "";
         model.addAttribute("keyword", keyword);
         return "form/board/book-search";
     }
 
-    @PostMapping("/board/book-search")
+    @PostMapping
     public String search(@ModelAttribute("keyword") String keyword, Model model) {
         try {
             String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
@@ -74,9 +76,6 @@ public class BookController {
                         .creator(author)
                         .imageURL(image).build());
 
-                System.out.println("TITLE = " + title);
-                System.out.println("AUTHOR = " + author);
-                System.out.println("IMAGE_URL = " + image);
             }
             model.addAttribute("boardSearchDtoList", boardSearchDtoList);
 
