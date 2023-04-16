@@ -19,4 +19,9 @@ public interface MemberService {
     void signOut(HttpSession session);
     void validateDuplicateMember(SignUpDto signUpDto, BindingResult bindingResult);
     //List<BoardDto> getBoardListOfMember();
+
+    // kakao login
+    public String getKaKaoAccessToken(String code);
+    public void createKakaoUser(String token);
+
 }
