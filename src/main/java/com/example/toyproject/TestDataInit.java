@@ -8,6 +8,7 @@ import com.example.toyproject.repository.MemberRepository;
 import com.example.toyproject.service.BoardService;
 import com.example.toyproject.service.MemberService;
 import jakarta.annotation.PostConstruct;
+import jakarta.persistence.PersistenceUnitUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -35,7 +36,6 @@ public class TestDataInit {
     public void init() {
         SignUpDto signUpDto = new SignUpDto("test@gmail.com", "12345678", "test");
         memberService.signUp(signUpDto);
-
         List<Member> members = memberRepository.findByEmailAndPassword("test@gmail.com", "12345678");
         Member member = members.stream().findFirst().get();
         MemberInfoDto memberInfoDto = MemberInfoDto.builder()
