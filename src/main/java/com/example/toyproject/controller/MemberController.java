@@ -92,12 +92,20 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @ResponseBody
+
     @GetMapping("/kakao")
-    public void kakaoCallBack(@RequestParam String code) {  // throws BaseException
+    public String kakaoCallBack(@RequestParam String code, HttpServletRequest request) {  // throws BaseException
         System.out.println("code = " + code);   // 인가코드 출력
         String access_Token = memberService.getKaKaoAccessToken(code);
-        memberService.createKakaoUser(access_Token);
+        SignInDto signInDto = memberService.createKakaoUser(access_Token);
+
+        // sign-in
+        MemberInfoDto memberInfoDto = memberService.signIn(signInDto);
+
+        // 로그인 성공 세션 처리 (세션에 로그인 회원 정보 보관)
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.SIGN_IN_MEMBER, memberInfoDto);
+        return "redirect:/";
     }
 
 }

@@ -22,6 +22,6 @@ public interface MemberService {
 
     // kakao login
     public String getKaKaoAccessToken(String code);
-    public void createKakaoUser(String token);
+    public SignInDto createKakaoUser(String token);
 
 }

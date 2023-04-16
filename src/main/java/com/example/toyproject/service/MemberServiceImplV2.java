@@ -32,6 +32,16 @@ public class MemberServiceImplV2 implements MemberService {
 
     @Override
     public MemberInfoDto signIn(SignInDto signInDto) {
+        System.out.println("signInDto.email = " + signInDto.getEmail());
+        System.out.println("signInDto.password = " + signInDto.getPassword());
+
+        Member test = memberRepository.findByEmail(signInDto.getEmail()).orElse(null);
+        if (test == null) {
+            System.out.println("is null!!!");
+        } else {
+            System.out.println("is not null!!!");
+        }
+
         Optional<Member> first = memberRepository.
                 findByEmailAndPassword(signInDto.getEmail(), signInDto.getPassword())
                 .stream().findFirst();
@@ -123,8 +133,9 @@ public class MemberServiceImplV2 implements MemberService {
         return access_Token;
     }
 
+    @Transactional
     @Override
-    public void createKakaoUser(String token){  // throws BaseException
+    public SignInDto createKakaoUser(String token){  // throws BaseException
 
         String reqURL = "https://kapi.kakao.com/v2/user/me";
         String ADMIN_TOKEN = "3782db0de7a89f13222fe9c545856ea7";
@@ -163,13 +174,13 @@ public class MemberServiceImplV2 implements MemberService {
                 email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
             }
             // TODO null exception
-            String nickname = element.getAsJsonObject().get("nickname").getAsString();
+
+            String nickname = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("profile").getAsJsonObject().get("nickname").getAsString();
 
             System.out.println("nickname : " + nickname);
             System.out.println("id : " + id);
             System.out.println("email : " + email);
 
-            // TODO 이 정보들(nickname, email)을 가지고 회원가입, 로그인 진행하면 됨
 
             Member kakaoUser = memberRepository.findByEmail(email).orElse(null);
             SignUpDto kakaoUserDto;
@@ -182,17 +193,18 @@ public class MemberServiceImplV2 implements MemberService {
                 kakaoUser = kakaoUserDto.toEntity();
                 signUp(kakaoUserDto);
             }
-            // sign-in
+            // return SignInDto
             SignInDto signInDto = SignInDto.builder()
                     .email(kakaoUser.getEmail())
                     .password(kakaoUser.getPassword()).build();
-            signIn(signInDto);
 
             br.close();
+            return signInDto;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
 
