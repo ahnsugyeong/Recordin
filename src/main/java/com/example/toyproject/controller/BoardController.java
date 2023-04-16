@@ -11,7 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 
 @Slf4j
 @Controller
@@ -28,8 +32,11 @@ public class BoardController {
                                      MemberInfoDto memberInfoDto, Model model) {
         if (memberInfoDto == null) return "redirect:/";
         //List<BoardDto> boards = boardService.getBoardList(member);
+        LocalDate date = LocalDate.now();
+        String month = date.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
 
         List<BoardDto> boardList = boardService.getBoardList(memberInfoDto);
+        model.addAttribute("month", month);
         model.addAttribute("member", memberInfoDto);
         model.addAttribute("boards", boardList);
         return "form/board/main";

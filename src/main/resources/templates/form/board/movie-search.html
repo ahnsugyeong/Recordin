@@ -17,10 +17,10 @@
     <body>
     <script th:src="@{/js/Search.js}"></script>
     <div class="col-md-12">
-        <h1>도서 검색</h1>
+        <h1>영화 검색</h1>
         <div class="col-md-4">
-            <form th:action="@{/board/book-search}" method="post">
-                <input type="text" th:value="${keyword}" name="keyword" placeholder="도서명 또는 ISBN을 입력해주세요.">
+            <form th:action="@{/board/movie-search}" method="post">
+                <input type="text" th:value="${keyword}" name="keyword" placeholder="감독 또는 영화명을 입력해주세요.">
                 <button th:text="검색" type="submit"/>
             </form>
         </div>

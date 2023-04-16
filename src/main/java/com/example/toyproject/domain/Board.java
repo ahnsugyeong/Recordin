@@ -14,7 +14,6 @@ import static jakarta.persistence.FetchType.*;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
@@ -53,7 +52,9 @@ public class Board {
     public Board(Long id, Member member,String title, String content, LocalDateTime createdDate,
                  int rate, String madeBy, Category category, String imageURL) {
         this.id=id;
-        this.member=member;
+        //this.member=member;
+        //builder를 사용할 때 아예 연관관계 메서드를 추가하도록 설정
+        setMember(member);
         this.title = title;
         this.content = content;
         this.rate=rate;
