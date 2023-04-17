@@ -16,10 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -92,6 +89,22 @@ public class MemberController {
         HttpSession session = request.getSession(false);
         //if session is null, signOut --> 조건문을 사용할 필요가 없어보여서 지움
         memberService.signOut(session);
+        return "redirect:/";
+    }
+
+
+    @GetMapping("/kakao")
+    public String kakaoCallBack(@RequestParam String code, HttpServletRequest request) {  // throws BaseException
+        System.out.println("code = " + code);   // 인가코드 출력
+        String access_Token = memberService.getKaKaoAccessToken(code);
+        SignInDto signInDto = memberService.createKakaoUser(access_Token);
+
+        // sign-in
+        MemberInfoDto memberInfoDto = memberService.signIn(signInDto);
+
+        // 로그인 성공 세션 처리 (세션에 로그인 회원 정보 보관)
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.SIGN_IN_MEMBER, memberInfoDto);
         return "redirect:/";
     }
 
