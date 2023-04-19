@@ -27,7 +27,7 @@ import java.util.Optional;
 public class MemberController {
 
     private final MemberService memberService;
-    private final MemberRepository memberRepository;
+    //private final MemberRepository memberRepository;
 
     /**
      * sign-up
