@@ -1,4 +1,4 @@
-package com.example.toyproject;
+package com.example.toyproject.component;
 
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.dto.BoardDto;

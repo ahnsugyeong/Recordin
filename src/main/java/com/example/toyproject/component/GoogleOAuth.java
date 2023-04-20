@@ -1,4 +1,4 @@
-package com.example.toyproject;
+package com.example.toyproject.component;
 
 import com.example.toyproject.dto.oauth.GoogleOAuthTokenDto;
 import com.example.toyproject.dto.oauth.GoogleUserInfoDto;

@@ -207,6 +207,4 @@ public class MemberServiceImplV2 implements MemberService {
         return null;
     }
 
-
-
 }

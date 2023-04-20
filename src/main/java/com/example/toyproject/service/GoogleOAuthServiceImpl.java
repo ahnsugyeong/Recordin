@@ -1,6 +1,6 @@
 package com.example.toyproject.service;
 
-import com.example.toyproject.GoogleOAuth;
+import com.example.toyproject.component.GoogleOAuth;
 import com.example.toyproject.domain.Member;
 import com.example.toyproject.dto.MemberInfoDto;
 import com.example.toyproject.dto.oauth.GoogleOAuthTokenDto;
